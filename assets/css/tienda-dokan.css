@@ -1,0 +1,132 @@
+.dokan-store-wrap {
+    margin: 0px !important;
+    overflow-x: hidden;
+}
+#dokan-content, .dokan-profile-frame-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+.seller-featured-items, .seller-items {
+    width: min(90vw, 1100px);;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+.seller-items__title {
+    margin:10px 0 10px;
+    font-size:18px;
+    font-weight: 500;
+}
+.dokan-single-store .profile-frame .profile-info-box.profile-layout-default .profile-info-summery-wrapper .profile-info-summery {
+    padding: 25px 15px !important;
+}
+.dokan-single-store .profile-frame{
+    width: 100%;
+}
+.dokan-store-tabs {
+    width: var(--tamano-contenedores);
+}
+.dokan-store-products-filter-area {
+    width: var(--tamano-contenedores);
+}
+.dokan-store-products-filter-area select.orderby.orderby-search {
+    padding: 0 10px;
+}
+.seller-items .products, .seller-featured-items .products{
+    columns: 5;
+    column-gap: 10px;
+}
+.dokan-store-products-filter-area .product-name-search, .dokan-ajax-store-products-search-result, .dokan-store-products-filter-area .search-store-products {
+    display: none !important;
+}
+.dokan-single-store .profile-frame .profile-info-box .profile-info-summery-wrapper .profile-info-summery .profile-info-head .profile-img {
+    margin: 10px 0 !important;
+}
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit, 
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button, 
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button, 
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button, 
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit, 
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button, 
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button, 
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button {
+    font-size: var(--tamaño--secundario) !important;
+    padding: 0 !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+    background-color: transparent !important;
+    display: flex;
+}
+#dokan-content .seller-items .products, .seller-featured-items .products .producto-moto .columna-precio .btn .product_type_variable  {
+    font-size: 0px !important;
+}
+.seller-items .products .producto-moto, .seller-featured-items .products .producto-moto{
+    margin-bottom: 10px;
+}
+@media(max-width:1200px) {
+    .seller-items .products, .seller-featured-items .products {
+        columns: 4;
+    }
+    .dokan-single-store .profile-frame .profile-info-box.profile-layout-default .profile-info-summery-wrapper .profile-info-summery {
+        padding: 25px 0px !important;
+    }
+}
+@media(max-width:900px) {
+    .seller-items .products, .seller-featured-items .products {
+        columns: 3;
+    }
+    .dokan-single-store .profile-frame .profile-info-box.profile-layout-layout2 .profile-info-summery-wrapper .profile-info-summery .profile-info {
+        font-size: 0.8rem !important;
+    }
+    .dokan-store-wrap  .dokan-single-store {
+        margin-right: 0 !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+}
+@media(max-width:700px) {
+    .seller-items .products, .seller-featured-items .products {
+        columns: 2;
+    }
+}
+@media (max-width: 500px) {
+    .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit, 
+    .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button, 
+    .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button, 
+    .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button, 
+    :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit, 
+    :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button, 
+    :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button, 
+    :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button {
+        color: inherit;
+        text-decoration: none;
+        font-size: 0.625rem !important;
+    }
+}
+.seller-items-pagination {
+    display: flex !important;
+    gap: 5px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px !important;
+    flex-wrap: wrap !important;
+}
+
+.seller-items-pagination .page-numbers {
+    display: flex !important;
+    padding: 8px 15px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: white !important;
+    border-radius: 10px !important;
+    color: black !important;
+    text-decoration: none !important;
+}
+.seller-items-pagination .page-numbers:hover {
+    background: var(--color--secondary) !important;
+}
+

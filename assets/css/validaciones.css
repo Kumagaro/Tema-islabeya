@@ -1,0 +1,230 @@
+/* ============================================================
+   SISTEMA DE VALIDACIÓN GLOBAL — IslaBeya
+   ============================================================
+   - Mensaje de error debajo del campo (texto rojo pequeño con ● a la izquierda)
+   - Borde rojo en campos invalidados
+   - Banner global estilizado (alineado con errores client-side)
+   - Teclado numérico en móviles para campos numéricos
+   ============================================================ */
+
+/* ---------- Mensaje de error debajo del campo ---------- */
+.isla-error-msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    margin: 4px 0 0;
+    padding: 0;
+    font-family: var(--fuente--principal, 'Mi-Poppins') !important;
+    font-size: var(--tamaño--secundario, .8rem) !important;
+    font-weight: 500 !important;
+    line-height: 1.35 !important;
+    color: var(--color--error, #e74c3c) !important;
+    pointer-events: none;
+    user-select: none;
+}
+
+.isla-error-msg::before {
+    content: '●';
+    flex-shrink: 0;
+    font-size: 0.6rem;
+    line-height: 1;
+    color: var(--color--error, #e74c3c);
+    margin-top: 2px;
+}
+
+/* ---------- Campos con error (borde rojo) ---------- */
+.isla-invalid {
+    border-color: var(--color--error, #e74c3c) !important;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.12) !important;
+}
+
+.isla-invalid:focus {
+    border-color: var(--color--error, #e74c3c) !important;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.18) !important;
+}
+
+/* Trigger de searchable-select con error */
+.isla-invalid.searchable-select-trigger,
+.searchable-select-wrapper .isla-invalid.searchable-select-trigger {
+    border-color: var(--color--error, #e74c3c) !important;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.12) !important;
+}
+
+/* ---------- Banner global de errores ---------- */
+.isla-error-banner {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 0 18px !important;
+    padding: 14px 18px !important;
+    border: 1px solid rgba(231, 76, 60, 0.35);
+    border-left: 4px solid var(--color--error, #e74c3c);
+    border-radius: var(--borde--principal, 5px);
+    background: rgba(231, 76, 60, 0.06);
+    color: #a93226;
+    font-family: var(--fuente--principal, 'Mi-Poppins');
+    font-size: var(--tamaño--secundario, .8rem);
+    line-height: 1.5;
+}
+
+.isla-error-banner__titulo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.isla-error-banner__titulo::before {
+    content: '●';
+    font-size: 0.65rem;
+}
+
+.isla-error-banner ul {
+    margin: 0;
+    padding: 0 0 0 16px;
+    list-style: disc !important;
+}
+
+.isla-error-banner li {
+    font-size: var(--tamaño--secundario, .8rem);
+    line-height: 1.5;
+    margin: 2px 0;
+}
+
+/* ---------- Alinear notices de WooCommerce (server-side) ---------- */
+/* Mayor especificidad para sobrescribir estilos previos (opción A) */
+
+.woocommerce-NoticeGroup {
+    padding: 20px;
+}
+.woocommerce .woocommerce-error,
+.woocommerce .woocommerce-info,
+.woocommerce .woocommerce-message,
+.woocommerce-page .woocommerce-error,
+.woocommerce-page .woocommerce-info,
+.woocommerce-page .woocommerce-message {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin: 0 0 18px !important;
+    padding: 14px 16px !important;
+    border-radius: var(--borde--principal, 5px);
+    font-family: var(--fuente--principal, 'Mi-Poppins') !important;
+    font-size: var(--tamaño--secundario, .8rem) !important;
+    line-height: 1.5;
+    border: 1px solid !important;
+    border-left-width: 4px !important;
+    list-style: none !important;
+    background: #fff !important;
+}
+
+.woocommerce-error::before, .woocommerce-info::before, .woocommerce-message::before {
+    display: none !important;
+}
+
+.woocommerce .woocommerce-error,
+.woocommerce-page .woocommerce-error {
+    border-color: rgba(231, 76, 60, 0.35) !important;
+    border-left-color: var(--color--error, #e74c3c) !important;
+    background: rgba(231, 76, 60, 0.05) !important;
+    color: #a93226 !important;
+} 
+
+.woocommerce .woocommerce-info,
+.woocommerce-page .woocommerce-info {
+    border-color: rgba(21, 173, 60, 0.35) !important;
+    border-left-color: var(--color--primary, #15ad3c) !important;
+    background: rgba(21, 173, 60, 0.05) !important;
+    color: #1e7e34 !important;
+}
+
+
+
+.woocommerce .woocommerce-message,
+.woocommerce-page .woocommerce-message {
+    border-color: rgba(21, 173, 60, 0.35) !important;
+    border-left-color: var(--color--primary, #15ad3c) !important;
+    background: rgba(21, 173, 60, 0.05) !important;
+    color: #1e7e34 !important;
+}
+
+/* Listas internas de notices WooCommerce */
+.woocommerce .woocommerce-error li,
+.woocommerce-page .woocommerce-error li,
+.woocommerce .woocommerce-info li,
+.woocommerce-page .woocommerce-info li,
+.woocommerce .woocommerce-message li,
+.woocommerce-page .woocommerce-message li {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+}
+
+.woocommerce .woocommerce-error li a,
+.woocommerce-page .woocommerce-error li a,
+.woocommerce .woocommerce-info li a,
+.woocommerce-page .woocommerce-info li a,
+.woocommerce .woocommerce-message li a,
+.woocommerce-page .woocommerce-message li a {
+    text-decoration: none !important;
+    color: var(--color--error, #e74c3c) !important;
+}
+
+/* En checkout por pasos: los notices NO usan banner flotante,
+   quedan dentro del flujo del paso activo (debajo de cada campo). */
+.islabeya-checkout-3pasos .woocommerce-error,
+.islabeya-checkout-3pasos .woocommerce-info,
+.islabeya-checkout-3pasos .woocommerce-message {
+    width: 100% !important;
+    margin: 0 0 16px !important;
+    padding: 10px !important;
+}
+
+/* ---------- Teclado numérico en móviles ---------- */
+/* Eliminar spinners de tipo number (Firefox/Chrome) */
+input[type="number"].isla-numeric-field {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type="number"].isla-numeric-field::-webkit-outer-spin-button,
+input[type="number"].isla-numeric-field::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ---------- Botón deshabilitado ---------- */
+.isla-btn-disabled {
+    opacity: 0.55 !important;
+    cursor: not-allowed !important;
+    pointer-events: auto !important;
+}
+
+.isla-btn-disabled:hover {
+    transform: none !important;
+}
+
+/* ---------- Animación de entrada del mensaje ---------- */
+.isla-error-msg {
+    animation: isla-error-fade var(--tiempo--transiciones, .3s) ease;
+}
+
+@keyframes isla-error-fade {
+    from {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .isla-error-banner,
+    .woocommerce .woocommerce-error,
+    .woocommerce-page .woocommerce-error {
+        padding: 12px 14px !important;
+    }
+}
+

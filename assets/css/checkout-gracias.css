@@ -1,0 +1,722 @@
+/* ============================================================
+   CHECKOUT IslaBeya — Páginas de pago / recepción / gracias
+   form-pay.php · order-receipt.php · order-received.php · thankyou.php
+   ============================================================ */
+
+/* ---------- Layout general: 2 columnas (igual que checkout) ---------- */
+.islabeya-gracias__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+    max-width: var(--tamano-contenedores, 1280px);
+    margin: 0 auto;
+    padding: 20px 16px;
+}
+
+.islabeya-gracias__col-main {
+    min-width: 0;
+    position: sticky;
+    top: 30px;
+}
+
+.islabeya-gracias__col-resumen {
+    position: sticky;
+    top: 30px;
+    max-width: 500px;
+    justify-self: center;
+    width: 100%;
+}
+
+/* ---------- Resumen del pedido (reutiliza estética del checkout) ---------- */
+.islabeya-checkout-resumen__inner {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-contenedores, 10px);
+    padding: 20px;
+    box-shadow: var(--shadow--natural, 0 2px 10px rgba(0, 0, 0, 0.1));
+}
+
+.islabeya-checkout-resumen__titulo {
+    margin: 0 0 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color--text, #000);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--color--primary, #15ad3c);
+}
+
+/* ---------- Productos (mini tarjetas) ---------- */
+.islabeya-gracias__productos {
+    margin-bottom: 16px;
+}
+
+.islabeya-review-table__item {
+    display: grid;
+    grid-template-columns: 58px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.islabeya-review-table__item:last-child {
+    border-bottom: none;
+}
+
+.islabeya-review-table__thumb {
+    position: relative;
+    width: 58px;
+    height: 58px;
+    border-radius: 8px;
+    background: var(--color--secondary, #f5f5f5);
+    flex-shrink: 0;
+}
+
+.islabeya-review-table__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.islabeya-review-table__qty {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color--primary, #15ad3c);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 50px;
+    box-sizing: border-box;
+}
+
+.islabeya-gracias__item-info {
+    min-width: 0;
+}
+
+.islabeya-review-table__name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color--text, #000);
+    line-height: 1.35;
+}
+
+.islabeya-review-table__meta {
+    font-size: 0.75rem;
+    color: var(--color--text_secondary, #6b7280);
+    margin-top: 2px;
+}
+
+.islabeya-review-table__price {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color--tertiary, #004D35);
+    white-space: nowrap;
+}
+
+/* ---------- Totales ---------- */
+.islabeya-gracias__totales {
+    border-top: 2px solid #eee;
+    padding-top: 12px;
+}
+
+.islabeya-review-table__fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    font-size: 0.88rem;
+    color: var(--color--text, #000);
+}
+
+.islabeya-review-table__fila--total {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color--tertiary, #004D35);
+    border-top: 1px solid #eee;
+    margin-top: 6px;
+    padding-top: 12px;
+}
+
+.islabeya-review-table__label {
+    font-weight: 500;
+}
+
+.islabeya-review-table__valor {
+    font-weight: 600;
+}
+
+/* ---------- Mensaje de éxito ---------- */
+.islabeya-gracias__mensaje {
+    background: #ffffff;
+    border: 1px solid #d1f2eb;
+    border-top: 4px solid var(--color--primary, #15ad3c);
+    border-radius: var(--border-contenedores, 10px);
+    padding: 20px 22px;
+    margin-bottom: 24px;
+}
+
+.islabeya-gracias__mensaje-texto {
+    margin: 0 !important;
+    font-family: var(--fuente--principal, 'Mi-Poppins');
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color--tertiary, #004D35);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.islabeya-gracias__check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color--primary, #15ad3c);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* ---------- Resumen de la orden (overview) ---------- */
+.islabeya-gracias__overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    list-style: none !important;
+    margin: 0 0 24px !important;
+    padding: 0;
+}
+
+.woocommerce ul.order_details::after, .woocommerce ul.order_details::before {
+    display: none !important;
+}
+
+.islabeya-gracias__overview li {
+    background: #fff !important;
+    border: 1px solid #eee !important;
+    border-radius: var(--border-contenedores, 10px) !important;
+    padding: 14px 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    color: var(--color--text_secondary, #6b7280) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+    margin: 0px !important;
+}
+
+.islabeya-gracias__overview strong {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color--text, #000);
+}
+
+/* ---------- Direcciones ---------- */
+.islabeya-gracias__direcciones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.islabeya-gracias__direccion {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-contenedores, 10px);
+    padding: 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.islabeya-gracias__direccion-titulo {
+    margin: 0 0 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--color--primary, #15ad3c);
+}
+
+.islabeya-gracias__direccion address {
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--color--text, #000);
+    line-height: 1.6;
+}
+
+.islabeya-review-table__fila:nth-child(2) {
+    display: none !important;
+}
+
+/* ---------- Método de entrega (resumen envío) ---------- */
+.islabeya-gracias__entrega {
+    border: 1px solid #eee;
+    border-radius: var(--border-contenedores, 10px);
+    padding: 16px;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.islabeya-resumen-envio__titulo {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color--text, #000);
+    margin-bottom: 10px;
+}
+
+.islabeya-resumen-envio__bloque {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 0.82rem;
+    flex-wrap: wrap;
+}
+
+.islabeya-resumen-envio__bloque--gratuito {
+    background: #f0f9f4;
+    border-left: 3px solid var(--color--primary, #15ad3c);
+}
+
+.islabeya-resumen-envio__bloque--recogida {
+    background: #fff5f0;
+    border-left: 3px solid #ff6b35;
+}
+
+.islabeya-resumen-envio__subtitulo {
+    width: 100%;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.islabeya-resumen-envio__bloque--gratuito .islabeya-resumen-envio__subtitulo {
+    color: var(--color--primary, #15ad3c);
+}
+
+.islabeya-resumen-envio__bloque--recogida .islabeya-resumen-envio__subtitulo {
+    color: #ff6b35;
+}
+
+.islabeya-resumen-envio__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+    padding: 2px 0;
+    font-size: 0.78rem;
+    color: var(--color--text_secondary, #6b7280);
+}
+
+.islabeya-resumen-envio__tag {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+    padding: 2px 8px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.islabeya-resumen-envio__tiendas {
+    margin-top: 8px;
+    width: 100%;
+}
+
+.islabeya-resumen-envio__tienda {
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #ffd1b9;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 0.75rem;
+}
+
+.islabeya-resumen-envio__tienda-nombre {
+    font-weight: 600;
+    color: #ff6b35;
+    margin-bottom: 4px;
+}
+
+.islabeya-resumen-envio__tienda-direccion {
+    color: var(--color--text_secondary, #6b7280);
+    line-height: 1.5;
+    font-size: 0.72rem;
+}
+
+.islabeya-resumen-envio__tienda-contacto {
+    color: var(--color--text_secondary, #6b7280);
+    font-size: 0.72rem;
+    margin-top: 2px;
+}
+
+/* ---------- Acciones / Enlaces ---------- */
+.islabeya-gracias__acciones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+}
+
+.islabeya-gracias__accion,
+.islabeya-gracias__enlace {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: var(--borde--principal, 5px);
+    font-family: var(--fuente--principal, 'Mi-Poppins');
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--tiempo--transiciones, .3s) ease;
+    box-sizing: border-box;
+}
+
+.islabeya-gracias__accion--principal,
+.islabeya-gracias__enlace--tienda {
+    background: var(--color--primary, #15ad3c);
+    color: #fff;
+}
+
+.islabeya-gracias__accion--principal:hover,
+.islabeya-gracias__enlace--tienda:hover {
+    background: var(--color--hover_primary, #15AD3CE8);
+    color: #fff;
+}
+
+.islabeya-gracias__accion--secundaria {
+    background: #fff;
+    color: var(--color--text, #000);
+    border: 1px solid #ddd;
+}
+
+.islabeya-gracias__accion--secundaria:hover {
+    border-color: var(--color--primary, #15ad3c);
+    color: var(--color--primary, #15ad3c);
+}
+
+.islabeya-gracias__enlace--tienda {
+    margin-top: 16px;
+    width: 100%;
+}
+
+.islabeya-gracias__enlace--tienda:hover {
+    border-color: transparent;
+}
+
+/* ---------- form-pay: tarjeta de pago ---------- */
+.islabeya-pay-order__payment {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-contenedores, 10px);
+    padding: 18px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.islabeya-pay-order__payment .wc_payment_method {
+    padding: 10px 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #fff;
+    transition: border-color var(--tiempo--transiciones, .3s) ease, box-shadow var(--tiempo--transiciones, .3s) ease;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.islabeya-pay-order__payment .wc_payment_method:has(input:checked) {
+    border-color: var(--color--primary, #15ad3c);
+    background: rgba(21, 173, 60, 0.03);
+    box-shadow: 0 0 0 2px rgba(21, 173, 60, 0.15);
+}
+
+.islabeya-pay-order__payment .wc_payment_method input[type="radio"] {
+    margin-right: 8px;
+    accent-color: var(--color--primary, #15ad3c);
+}
+
+.islabeya-pay-order__payment .wc_payment_method label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 85%;
+}
+
+.islabeya-pay-order__payment .wc_payment_method label img {
+    max-height: 24px;
+    width: auto;
+}
+
+.islabeya-pay-order__payment .payment_box {
+    margin-top: 10px;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--color--text_secondary, #6b7280);
+    width: 100%;
+}
+
+.islabeya-pay-order__payment .form-row {
+    margin-top: 14px;
+}
+
+.islabeya-pay-order__payment #place_order {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem !important;
+    line-height: 2;
+}
+
+.islabeya-pay-order__payment #place_order .woocommerce-Price-amount {
+    color: #ffd700;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.islabeya-pay-order__payment .woocommerce-terms-and-conditions-wrapper {
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+}
+
+.islabeya-pay-order__payment .woocommerce-terms-and-conditions-wrapper a {
+    color: var(--color--primary, #15ad3c);
+}
+
+/* ---------- order-receipt ---------- */
+.islabeya-gracias__receipt {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-contenedores, 10px);
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    margin-bottom: 24px;
+}
+
+.islabeya-gracias__receipt-ul {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.islabeya-gracias__receipt-ul li {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: var(--border-contenedores, 10px);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.78rem;
+    color: var(--color--text_secondary, #6b7280);
+}
+
+.islabeya-gracias__receipt-ul strong {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color--text, #000);
+}
+
+/* ---------- thank-you: pedido fallido ---------- */
+.islabeya-gracias__fallo {
+    background: #fff5f0;
+    border: 1px solid #ffd1b9;
+    border-left: 4px solid #ff6b35;
+    border-radius: var(--border-contenedores, 10px);
+    padding: 20px 22px;
+    margin-bottom: 24px;
+}
+
+.islabeya-gracias__fallo .woocommerce-notice {
+    margin: 0 0 12px !important;
+}
+
+.islabeya-gracias__fallo-acciones {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.islabeya-gracias__fallo-acciones .button {
+    background: var(--color--primary, #15ad3c);
+    color: #fff;
+    border: none;
+    border-radius: var(--borde--principal, 5px);
+    padding: 12px 20px;
+    font-family: var(--fuente--principal, 'Mi-Poppins');
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--tiempo--transiciones, .3s) ease;
+}
+
+.islabeya-gracias__fallo-acciones .button:hover {
+    background: var(--color--hover_primary, #15AD3CE8);
+}
+
+/* ---------- Resumen de envío por producto (detalle rico, gracias) ---------- */
+.islabeya-resumen-envio--detallado .islabeya-resumen-envio__producto {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.islabeya-resumen-envio__producto-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.islabeya-resumen-envio__producto-nombre {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color--text, #000);
+    line-height: 1.35;
+}
+
+.islabeya-resumen-envio__producto-qty {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color--text_secondary, #6b7280);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.islabeya-resumen-envio__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.islabeya-resumen-envio__badge--envio {
+    background: rgba(21, 173, 60, 0.1);
+    color: var(--color--tertiary, #004D35);
+    border: 1px solid rgba(21, 173, 60, 0.25);
+}
+
+.islabeya-resumen-envio__badge--recogida {
+    background: rgba(255, 107, 53, 0.1);
+    color: #b84a2c;
+    border: 1px solid rgba(255, 107, 53, 0.25);
+}
+
+/* Detalle rico de envío */
+.islabeya-envio-detalle__bloque {
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+.islabeya-envio-detalle__bloque--verde {
+    background: #f0f9f4;
+    border-left: 3px solid var(--color--primary, #15ad3c);
+    color: var(--color--text_secondary, #2C4A3E);
+}
+
+.islabeya-envio-detalle__bloque--naranja {
+    background: #fff5f0;
+    border-left: 3px solid #ff6b35;
+    color: #555;
+}
+
+.islabeya-envio-detalle__bloque--morado {
+    background: #f5f0ff;
+    border-left: 3px solid #9b59b6;
+    color: #6c3483;
+}
+
+.islabeya-envio-detalle__titulo {
+    display: block;
+    font-weight: 600;
+    color: var(--color--tertiary, #004D35);
+    margin-bottom: 4px;
+}
+
+.islabeya-envio-detalle__bloque--naranja .islabeya-envio-detalle__titulo {
+    color: #b84a2c;
+}
+
+.islabeya-envio-detalle__linea {
+    margin: 3px 0;
+    font-size: 0.74rem;
+}
+
+.islabeya-envio-detalle__fecha strong,
+.islabeya-envio-detalle__linea strong {
+    font-weight: 600;
+}
+
+.islabeya-envio-detalle__exito {
+    color: var(--color--primary, #15ad3c);
+    font-style: italic;
+}
+
+.islabeya-envio-detalle__exito span {
+    font-weight: 600;
+    font-style: normal;
+}
+
+.islabeya-envio-detalle__aviso {
+    color: #b84a2c;
+    font-weight: 500;
+} 
+
+.select2-container--open .select2-dropdown--above {
+    margin: 0 !important;
+}
+
+@media (max-width: 769px) {
+    .islabeya-gracias__layout {
+        grid-template-columns: 1fr !important;
+
+        .islabeya-gracias__col-main {
+            position: relative !important;
+
+            .islabeya-gracias__direcciones {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        .islabeya-gracias__col-resumen {
+            max-width: 100% !important;
+        }
+    }
+    
+}

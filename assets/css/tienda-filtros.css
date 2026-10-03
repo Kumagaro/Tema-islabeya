@@ -1,0 +1,488 @@
+.main {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    gap: 10px;
+    padding: 20px;
+} 
+.products-top {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    position: sticky;
+    top: 120px;
+    background-color: #f5f5f5;
+    z-index: 99;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main .filtro {
+    width: 100%;
+    border-right: 1px solid #00000015;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+}
+.filtro-content {
+    position: sticky;
+    top: 130px;
+}
+.titulo-filtro, .botones-filtro {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+    border-top: 1px solid #00000015;
+}
+.botones-filtro {
+    gap: 10px;
+    justify-content: space-between !important;
+}
+
+#borrar, #aplicar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color-texto-acento-gris-1);
+}
+
+#aplicar {
+    display: none !important;
+}
+
+#borrar:hover, #aplicar:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* ============ ESTILOS GENERALES Y HEADERS ============ */
+@media(min-width:769px) {
+    .yith-wcan-filters {
+        max-height: 65vh !important;
+        overflow-y: scroll !important;
+        border-top: 1px solid #00000015;
+        border-bottom: 1px solid #00000015;
+    }
+}
+
+.yith-wcan-filter {
+    padding: 10px;
+}
+.yith-wcan-filter .filter-title {
+    color: var(--color--primary) !important;
+    font-weight: 500;
+    padding: 10px 0;
+}
+
+.yith-wcan-filter .filter-title:hover {
+    text-decoration: underline;
+    cursor: pointer !important;
+}
+
+#filter_4971_1_672 label {
+    margin: 0px !important;
+}
+
+/* ============ FLECHAS DE LOS FILTROS ============ */
+.yith-wcan-filters .yith-wcan-filter .filter-title.collapsable.open:after,
+.yith-wcan-filters .yith-wcan-filter .filter-title.collapsable.opened:after {
+    background-image: url(../icons/Flecha-arriba-sin-fondo.svg);
+    width: 20px;
+    height: 20px;
+    align-self: center !important;
+    right: 5px !important;
+    top: calc(50% - 12px);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.yith-wcan-filter .filter-title.collapsable.opened:hover::after {
+    background-image: url(../icons/Flecha-arriba-con-fondo.svg) !important;
+}
+
+.yith-wcan-filters .yith-wcan-filter .filter-title.collapsable.closed:after {
+    background-image: url(../icons/Flecha-abajo-sin-fondo.svg) !important;
+    width: 20px;
+    height: 20px;
+    align-self: center !important;
+    right: 5px !important;
+    top: calc(50% - 12px);
+}
+
+.yith-wcan-filter .filter-title.collapsable.closed:hover::after {
+    background-image: url(../icons/Flecha-abajo-con-fondo.svg) !important;
+}
+
+/* ============ FILTROS DE CATEGORÍA ============ */
+/* ============ FILTROS DE MARCA ============ */
+.yith-wcan-filters.custom-style span.checkboxbutton:before {
+    display: none !important;
+}
+
+.yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > a, 
+.yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > label > a  {
+    display: flex;
+    font-size: 0.9rem;
+    justify-content: space-between;
+    width: 100%;
+    color: #4b5563;
+    text-decoration: none;
+    transition: var(--tiempo-transicion);
+}
+
+.yith-wcan-filters .yith-wcan-filter .filter-items .filter-item .item-count {
+    background: #e5e7eb;
+    color: #4b5563;
+    padding: 0px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    transition: 0.25s;
+    margin-left: 8px;
+    max-height: 22px;
+}
+@media(min-width:769px) {
+    .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > a:hover, 
+    .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > label > a:hover {
+        color: #999;
+        text-decoration: underline;
+        text-underline-offset: 4px !important;
+    }
+    .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > a:hover .item-count, 
+    .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > label > a:hover .item-count {
+        background-color: #999;
+        color: white !important;
+    }
+}
+@media(max-width:768px) {
+    .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > a:hover, 
+    .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > label > a:hover {
+        color: #4b5563;
+    }
+    .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > a:hover .item-count, 
+    .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item > label > a:hover .item-count {
+        background: #e5e7eb;
+        color: #4b5563;
+    }
+}
+
+
+
+
+.yith-wcan-filters.custom-style span.checkboxbutton input[type=checkbox]:checked .term-label,
+.yith-wcan-filters.custom-style span.checkboxbutton input[type=checkbox]:checked .term-label {
+    color: var(--color--primary);
+    text-decoration: underline solid;
+    text-underline-offset: 4px;
+}
+
+.yith-wcan-filters.custom-style span.checkboxbutton input:checked ~ .item-count,
+.yith-wcan-filters.custom-style span.checkboxbutton input:checked ~ .item-count {
+    text-decoration: none !important;
+    background-color: var(--color--primary) !important;
+    color: white !important;
+}
+
+
+/* ============ FILTROS DE PRECIO ============ */
+
+.filter-items .radio label {
+    display: flex;
+}
+.filter-items .radio label a {
+    justify-content: flex-start !important;
+    gap: 10px !important;
+}
+
+.yith-wcan-filter[data-filter-type="price_range"] .filter-item.active .price-range {
+    color: var(--color--primary) !important;
+    font-weight: var(--color--primary) !important;
+}
+
+.yith-wcan-filter[data-filter-type="price_range"] .filter-item.active input[type="radio"]:checked ~ .price-range {
+    color: var(--color--primary) !important;
+}
+
+
+/* ============ ESTADOS ACTIVOS (consistencia) ============ */
+.yith-wcan-filter[data-taxonomy="product_cat"] .filter-item.active .term-label,
+.yith-wcan-filter[data-taxonomy="product_brand"] .filter-item.active .term-label {
+    color: var(--color--primary) !important;
+    font-weight: var(--color--primary) !important;
+    text-decoration: underline solid #15ad3c !important;
+    text-underline-offset: 4px !important;
+}
+
+.yith-wcan-filter[data-taxonomy="product_cat"] .filter-item.active .item-count,
+.yith-wcan-filter[data-taxonomy="product_brand"] .filter-item.active .item-count {
+    background: var(--color--primary) !important;
+    color: white !important;
+}
+
+/* ============ ESTILOS COMUNES ============ */
+.yith-wcan-filters .yith-wcan-filter {
+    margin-bottom: 30px;
+}
+
+.yith-wcan-active-filters, .yith-wcan-reset-filters {
+    display: none !important;
+}
+
+/* ============ TRANSICIONES ============ */
+.yith-wcan-filter[data-taxonomy="product_cat"] .filter-item.active .term-label,
+.yith-wcan-filter[data-taxonomy="product_brand"] .filter-item.active .term-label,
+.yith-wcan-filter[data-filter-type="price_range"] .filter-item.active .price-range,
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item.active .term-label {
+    transition: all var(--tiempo-transicion) ease !important;
+}
+
+
+.apply-filters {
+    display: none !important;
+}
+
+/* Hover en escritorio */
+@media (min-width: 1025px) {
+.yith-wcan-filter[data-taxonomy="product_cat"] label:hover .term-label,
+    .yith-wcan-filter[data-taxonomy="product_brand"] label:hover .term-label {
+        color: var(--color--primary);
+        text-decoration: underline solid;
+        text-underline-offset: 4px;
+    }
+
+    .yith-wcan-filter[data-taxonomy="product_cat"] label:hover .item-count,
+    .yith-wcan-filter[data-taxonomy="product_brand"] label:hover .item-count {
+        background: var(--color--primary);
+        color: white;
+    }
+}
+
+/* ============ SWITCHES PARA FILTRO "OTROS" (stock_sale) ============ */
+
+/* 1. OCULTAR ELEMENTOS ORIGINALES DEL PLUGIN */
+.yith-wcan-filter[data-filter-type="stock_sale"] .checkboxbutton {
+    display: none !important;
+}
+
+.yith-wcan-filter[data-filter-type="stock_sale"] input[type="checkbox"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 10 !important;
+    cursor: pointer !important;
+}
+
+/* 2. PREPARAR EL CONTENEDOR PRINCIPAL */
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item label {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    cursor: pointer !important;
+    position: relative !important;
+    min-height: 28px !important;
+    padding-right: 50px !important; /* Espacio para el switch */
+}
+
+/* 3. SWITCH - CONTENEDOR (pseudoelemento en el label) */
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item label::after {
+    content: '' !important;
+    position: absolute !important;
+    right: 0 !important;
+    width: 46px !important;
+    height: 22px !important;
+    background: var(--color-acento-gris, #ccc) !important;
+    border-radius: 11px !important;
+    transition: all var(--tiempo-transicion, 0.3s) ease !important;
+    z-index: 1 !important;
+}
+
+/* 4. SWITCH - CÍRCULO (pseudoelemento adicional) */
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item label::before {
+    content: '' !important;
+    position: absolute !important;
+    right: 25px !important; /* Posición inicial (apagado) */
+    width: 18px !important;
+    height: 18px !important;
+    background: white !important;
+    border-radius: 50% !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    transition: all var(--tiempo-transicion, 0.3s) ease !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    z-index: 2 !important;
+}
+
+/* 5. SWITCH ACTIVADO (checkbox:checked) */
+.yith-wcan-filter[data-filter-type="stock_sale"] input[type="checkbox"]:checked ~ label::after {
+    background: var(--color-primario, #15ad3c) !important;
+}
+
+.yith-wcan-filter[data-filter-type="stock_sale"] input[type="checkbox"]:checked ~ label::before {
+    right: 3px !important; /* Posición activado (derecha) */
+}
+
+/* 6. ESTADO ACTIVO (clase .active del plugin) */
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item.active label::after {
+    background: var(--color-primario, #15ad3c) !important;
+}
+
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item.active label::before {
+    right: 3px !important;
+}
+
+/* 7. TEXTO DEL SWITCH */
+.yith-wcan-filter[data-filter-type="stock_sale"] .term-label {
+    flex: 1 !important;
+    color: var(--color-texto-acento-gris-1, #666) !important;
+    transition: color var(--tiempo-transicion, 0.3s) ease !important;
+    z-index: 5 !important;
+}
+
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item.active .term-label,
+.yith-wcan-filter[data-filter-type="stock_sale"] input[type="checkbox"]:checked ~ .term-label {
+    color: var(--color-primario, #15ad3c) !important;
+    font-weight: var(--peso-fuente-simple, 500) !important;
+}
+
+/* 8. HOVER STATES */
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item label:hover::after {
+    background: #999;
+}
+
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item.active label:hover::after,
+.yith-wcan-filter[data-filter-type="stock_sale"] input[type="checkbox"]:checked ~ label:hover::after {
+    background: #0f8a2d !important;
+}
+
+/* 9. TRANSICIONES */
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item label::after,
+.yith-wcan-filter[data-filter-type="stock_sale"] .filter-item label::before,
+.yith-wcan-filter[data-filter-type="stock_sale"] .term-label {
+    transition: all var(--tiempo-transicion, 0.3s) ease !important;
+}
+
+
+/* ============ MENSAJE DE "NO HAY PRODUCTOS" ============ */
+.e-loop-nothing-found-message__text::before {
+    content: '';
+    background-image: url(../icons/Box-1\ \(1\).svg) !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px 50px !important;
+    width: 80px !important;
+    height: 80px !important;
+    display: inline-block !important;
+    position: absolute;
+    top: 0;
+    right: calc(50% - 50px);
+    background-color: white;
+    border-radius: 100px;
+}
+
+.elementor-widget-loop-grid .e-loop-nothing-found-message {
+    margin-top: 60px !important;
+}
+
+.woocommerce-ordering {
+    display: none !important;
+}
+.shop-products-container .products .producto-moto {
+    margin-bottom: 10px;
+}
+.shop-products-container {
+    display: flex;
+    flex-direction: column;
+}
+.shop-products-container .products {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    align-self: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.filtro-movil {
+    display: none;
+}
+.dgwt-wcas-search-wrapp {
+    min-width: 0px !important;
+}
+@media(max-width: 1250px) {
+    .products-top {
+        top: 115px;
+    }
+}
+@media(max-width: 950px) {
+    .products-top {
+        top: 105px;
+    }
+}
+@media(max-width: 800px) {
+    .products-top {
+        top: 0px;
+        box-sizing: border-box;
+        padding: 10px 20px !important;
+        width: 100%;
+        position: absolute;
+        position-anchor: --header-bottom;
+        position-area: bottom center;
+        box-shadow: var(--shadow--natural);
+    }
+    .main {
+        grid-template-columns: 1fr;
+    }
+    .filtro {
+        display: none;
+    }
+    .filtro-movil {
+        display: block;
+    }
+}
+@media(max-width: 710px) {
+    .shop-products-container .products {
+        padding: 40px 0 0 0;
+    }
+    .producto-moto { 
+        width: 48.7%; 
+    }
+}
+@media(max-width: 500px) { 
+    .producto-moto { 
+        width: 48.7%; 
+    }
+}
+
+.woocommerce-pagination ul {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.page-numbers .page-numbers {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    color: black;
+    text-decoration: none;
+    box-shadow: var(--shadow--natural);
+}
+
+
+/* ============ Barra de Busqueda ============ */
+
+.dgwt-wcas-has-headings .dgwt-wcas-suggestion, .dgwt-wcas-has-headings .dgwt-wcas-suggestion.dgwt-wcas-suggestion-headline, 
+.dgwt-wcas-has-headings .dgwt-wcas-suggestion.dgwt-wcas-suggestion-tax, .dgwt-wcas-suggestion.dgwt-wcas-suggestion-no-border-bottom, body:not(.dgwt-wcas-is-details) .dgwt-wcas-suggestion:last-child {
+    text-decoration: none;
+}

@@ -1,0 +1,8 @@
+{
+    "intelephense.stubs": [
+        "wordpress"
+    ],
+    "intelephense.environment.includePaths": [
+        "${workspaceFolder}/.vscode/php-stubs/wordpress-stubs"
+    ]
+}

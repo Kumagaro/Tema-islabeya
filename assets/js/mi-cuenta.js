@@ -1,0 +1,8 @@
+const toggleButton = document.getElementById('toggle-btn')
+const sidebar = document.getElementById('sidebar')
+
+function toggleSidebar() {
+    sidebar.classList.toggle('close')
+    sidebar.classList.toggle('active-movil')
+    toggleButton.classList.toggle('active-movil')
+}

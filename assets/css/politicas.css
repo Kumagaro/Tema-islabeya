@@ -1,0 +1,22 @@
+.hentry .entry-header {
+    display: flex !important;
+    z-index: 1;
+}
+
+.page-main {
+    width: var(--tamano-contenedores);
+    align-self: center;
+    justify-self: center;
+}
+.wp-block-table .has-fixed-layout {
+    font-size: var(--tamaño--secundario);
+    color: var(--color--text_secondary);
+}
+.wp-block-heading {
+    margin-top: 20px;
+}
+ul, ol { 
+    font-size: var(--tamaño--secundario);
+    color: var(--color--text_secondary);
+    line-height: 1;
+}

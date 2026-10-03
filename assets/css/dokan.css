@@ -1,0 +1,10 @@
+:is(#dokan-vendor-dashboard-root,.dokan-admin-dashboard-layout,.dokan-vendor-support-list-container) .dataforms-layouts__wrapper
+{
+    background-color: #f0f0f1;
+    padding: 5px;
+    border: none;
+}
+:is(:is(.pui-root,.dokan-layout) button,:is(.pui-root,.dokan-layout) [role=button],:is(.pui-root,.dokan-layout) input[type=button],:is(.pui-root,.dokan-layout) input[type=submit],:is(.pui-root,.dokan-layout) input[type=reset]):hover:not(:disabled) {
+
+    background-color: #f0f0f1;
+}

@@ -1,0 +1,85 @@
+/* Ocultar el selector nativo de puntuación */
+.comment-form-rating select[name="rating"],
+.comment-form-rating .stars,
+#comment-form-rating-label {
+    display: none !important;
+}
+
+/* Contenedor de estrellas personalizadas */
+.islabeya-rating-container {
+    margin-bottom: 20px;
+}
+
+.islabeya-rating-container label {
+    font-size: var(--tamaño--secundario);
+    color: var(--color--text_secondary);
+}
+
+/* Estrellas interactivas */
+.islabeya-stars {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.islabeya-stars span {
+    font-size: 32px;
+    line-height: 1;
+    color: #ddd;
+    transition: color 0.2s ease;
+    cursor: pointer;
+}
+
+.islabeya-stars span:hover,
+.islabeya-stars span.hover {
+    color: #ffc107;
+}
+
+.islabeya-stars span.selected {
+    color: #ffc107;
+}
+
+/* Mensaje de feedback */
+.islabeya-rating-feedback {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Estilos para el resumen de calificaciones */
+.islabeya-rating-summary {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.islabeya-rating-summary .stars {
+    display: flex;
+    gap: 3px;
+}
+
+.islabeya-rating-summary .stars span {
+    font-size: 20px;
+    color: #ffc107;
+}
+
+.islabeya-rating-summary .rating-value {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.islabeya-rating-summary .rating-count {
+    color: #666;
+    font-size: 14px;
+}
+
+.comment-form-comment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}

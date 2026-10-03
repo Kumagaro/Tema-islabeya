@@ -1,0 +1,174 @@
+/**
+ * Product Gallery Styles
+ * Para la galería de imágenes en la página de producto individual
+ */
+
+/* ============ CONTENEDOR PRINCIPAL ============ */
+.woocommerce-product-gallery {
+    position: relative;
+    width: 100%;
+}
+
+/* ============ IMAGEN PRINCIPAL ============ */
+.product-gallery__main-image {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.main-image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-image-wrapper a {
+    display: block;
+    width: 100%;
+    cursor: zoom-in;
+}
+
+.main-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.main-image-wrapper a:hover img {
+    transform: scale(1.02);
+}
+
+/* ============ CONTENEDOR DE MINIATURAS ============ */
+.product-gallery__thumbnails-wrapper {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.product-gallery__thumbnails {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-start;
+}
+
+/* ============ CADA MINIATURA ============ */
+.thumbnail-item {
+    width: 85px;
+    height: 85px;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #e5e7eb;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+.thumbnail-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.thumbnail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Hover de miniatura */
+.thumbnail-item:hover {
+    border-color: #15AD3C;
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Miniatura activa/seleccionada */
+.thumbnail-item.active {
+    border-color: #15AD3C;
+    box-shadow: 0 0 0 3px rgba(21, 173, 60, 0.25);
+}
+
+/* ============ LIGHTBOX (PhotoSwipe) ============ */
+.pswp__caption__center {
+    text-align: center;
+}
+
+.pswp__button--close,
+.pswp__button--fs,
+.pswp__button--zoom {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    margin: 8px;
+}
+
+.pswp__button--arrow--left,
+.pswp__button--arrow--right {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.pswp__button--arrow--left:hover,
+.pswp__button--arrow--right:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+/* ============ CURSOR ZOOM PARA LA IMAGEN PRINCIPAL ============ */
+.product-gallery__main-image .main-image-wrapper a {
+    cursor: pointer;
+    display: flex !important;
+    aspect-ratio: 1 / 1 !important;
+}
+
+.product-gallery__main-image .main-image-wrapper a img {
+    pointer-events: none; /* Esto evita que el img capture el clic antes que el enlace */
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+    .thumbnail-item {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .product-gallery__thumbnails {
+        gap: 10px;
+    }
+    
+    .product-gallery__main-image {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .thumbnail-item {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .product-gallery__thumbnails {
+        gap: 8px;
+        justify-content: center;
+    }
+    
+    .pswp__button--arrow--left,
+    .pswp__button--arrow--right {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 380px) {
+    .thumbnail-item {
+        width: 55px;
+        height: 55px;
+    }
+}

@@ -1,0 +1,1216 @@
+:root {
+	--muted: #69717a;
+	--line: #e8eaed;
+	--green: #109d39;
+	--bg: #f8f9fb 
+}
+
+* {
+	box-sizing: border-box
+}
+
+html {
+	scroll-behavior: smooth
+}
+
+body.sd-express-store {
+	margin: 0;
+	font-family: Inter, Arial, Helvetica, sans-serif;
+	background: #fff;
+}
+
+main {
+	overflow-x: hidden;
+}
+
+.sd-express-container {
+	width: min(1180px, calc(100% - 48px));
+	margin: auto
+}
+
+.sd-express-topbar {
+	height: 30px;
+    background: #15ad3c;
+    color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: min(16vw, 220px);
+    font-size: 12px;
+}
+
+.sd-express-topbar span a {
+	text-decoration: none;
+	color: #f5f5f5;
+}
+
+.sd-express-header {
+	height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 40px;
+    background: white;
+}
+
+.sd-express-logo {
+	
+}
+
+.sd-express-logo b {
+	font-size: 32px;
+	color: #161a1f;
+	font-style: italic
+}
+
+.sd-express-logo b::first-letter {
+	color: #161a1f
+}
+
+.sd-express-logo span {
+	font-size: 18px
+}
+
+.sd-express-nav {
+	display: flex;
+	gap: 31px;
+	align-items: center;
+	flex: 1;
+	justify-content: center
+}
+
+.sd-express-nav a {
+	color: #9c9d9f;
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	font-size: .8rem;
+    font-weight: 500; 
+}
+
+.sd-express-nav a.active,
+.sd-express-nav a:hover {
+	color: var(--color--primary);
+	border-color: var(--color--primary)
+}
+
+.sd-express-header-actions {
+	display: flex;
+	align-items: center
+}
+
+.sd-express-icon-btn {
+	position: relative;
+	border: 0;
+	background: transparent;
+	font-size: 27px;
+	cursor: pointer;
+	color: #20242a
+}
+
+.sd-express-cart-btn span {
+	position: absolute;
+	right: -4px;
+	top: -3px;
+	background: var(--color--primary);
+	color: #fff;
+	border-radius: 999px;
+	width: 17px;
+	height: 17px;
+	font-size: 10px;
+	display: grid;
+	place-items: center
+}
+
+.sd-express-hero {
+	height: 540px;
+    background: radial-gradient(circle at 40% 42%, #fff 0, #fff 35%, #f1f2f3 72%, #e6e7e9 100%);
+    background-image: url(../img/sd-express/hero-banner.webp);
+    background-size: contain;
+    background-position: center right;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+}
+
+.sd-express-hero-content {
+	height: 100%;
+	position: relative;
+	display: flex;
+	align-items: center
+}
+
+.sd-express-hero-copy {
+	width: 42%;
+	z-index: 2
+}
+
+.sd-express-eyebrow {
+	font-size: 12px;
+	font-weight: 800;
+	color: var(--color--primary);
+	margin: 0 0 14px
+}
+
+.sd-express-hero h1 {
+	font-size: 64px;
+	line-height: 1.05;
+	margin: 0 0 16px;
+	letter-spacing: -2px
+}
+
+.sd-express-lead {
+	font-size: 17px;
+	line-height: 1.6;
+	color: #555d65
+}
+
+.sd-express-hero-buttons {
+	display: flex;
+	gap: 14px;
+	margin-top: 28px
+}
+
+.sd-express-btn {
+	padding: 15px 20px;
+	border-radius: 6px;
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 14px;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	transition: all .2s
+}
+
+.sd-express-btn.primary {
+	background: var(--color--primary);
+	color: #fff
+}
+
+.sd-express-btn.primary:hover {
+	background: var(--color--tertiary)
+}
+
+.sd-express-btn.secondary {
+	background: #fff;
+	color: var(--ink);
+	border: 1px solid var(--line)
+}
+
+.sd-express-btn.secondary:hover {
+	border-color: var(--color--primary);
+	color: var(--color--primary)
+}
+
+.sd-express-hero-trust {
+	display: flex;
+	gap: 24px;
+	margin-top: 32px;
+	font-size: 11px;
+	color: #69717a
+}
+
+.sd-express-hero-trust span {
+	display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+}
+
+.sd-express-hero-trust b {
+	color: var(--ink);
+	font-size: 12px
+}
+
+.sd-express-hero-art {
+	position: absolute;
+	right: 0;
+	width: 55%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center
+}
+
+.sd-express-hero-art img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain
+}
+
+.sd-express-benefits {
+	padding: 32px 0;
+	background: #fff
+}
+
+.sd-express-benefit-grid {
+	display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sd-express-benefit-grid div { 
+    display: flex;
+    gap: 0px;
+    font-size: 14px;
+    opacity: 0.5;
+    flex-direction: column;
+    align-items: center;
+	min-width: 200px;
+
+}
+
+.sd-express-benefit-grid strong {
+	font-size: 14px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+	span {
+		height: 18px;
+	}
+}
+
+.sd-express-section {
+	padding: 48px 0
+}
+
+.sd-express-brand-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+	margin-top: 32px
+}
+
+.sd-express-brand-card {
+	border-radius: 12px;
+	overflow: hidden;
+	position: relative;
+	min-height: 280px;
+	display: flex;
+	align-items: flex-end;
+	background: #f8f9fb
+}
+
+.sd-express-brand-card.torvan {
+	background-image: url(../img/sd-express/Torvan-minibanner.webp);
+    background-position: bottom right;
+    background-size: cover;
+}
+
+.sd-express-brand-card.bonoli {
+	background-image: url(../img/sd-express/Bonoli-minibanner.webp);
+    background-position: bottom right;
+    background-size: cover;
+}
+
+.sd-express-brand-card.sako {
+	background-image: url(../img/sd-express/Sako-minibanner.webp);
+    background-position: bottom left;
+    background-size: cover;
+}
+
+.sd-express-brand-text {
+	display: flex;
+    padding: 24px;
+    position: relative;
+    z-index: 2;
+    width: 50%;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+} 
+
+.sd-express-brand-logo.bonoli-logo {
+	color: #8b7355
+}
+
+.sd-express-brand-card p {
+	font-size: 14px; 
+	margin: auto 0 16px;
+	line-height: 1.5
+}
+
+.sd-express-brand-card.bonoli p {
+	color: #6b5a44
+}
+
+.sd-express-dark-btn {
+	padding: 10px 16px;
+    background: rgba(0, 0, 0, .3);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all .2s; 
+}
+
+.sd-express-dark-btn:hover {
+	background: rgba(0, 0, 0, .5)
+}
+
+.sd-express-brand-card.bonoli .sd-express-dark-btn {
+	background: #5c4a32;
+	color: #fff
+}
+
+.sd-express-brand-card img {
+	height: 20px;
+}
+
+.sd-express-solar-visual {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 55%;
+	height: 100%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center
+}
+
+.sd-express-panel {
+	position: absolute;
+	top: 20%;
+	right: 10%;
+	width: 120px;
+	height: 80px;
+	background: linear-gradient(135deg, #1e3a5f 0, #0d1b2a 100%);
+	border-radius: 8px;
+	border: 2px solid rgba(255, 255, 255, .1)
+}
+
+.sd-express-solar-visual img {
+	position: relative;
+	z-index: 2;
+	max-width: 80%;
+	max-height: 60%;
+	object-fit: contain
+}
+
+.sd-express-category-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+	margin-top: 32px
+}
+
+.sd-express-category-card {
+	display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    background: linear-gradient(80deg, #f5f5f5, #f5f5f5, #83838378);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all .3s;
+    color: black;
+    position: relative;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.sd-express-category-card:hover {
+	transform: translatey(-4px)
+}
+
+.sd-express-category-card .texto {
+	z-index: 10;
+}
+
+.sd-express-cat-icon {
+	display: flex;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #15ad3c;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.sd-express-category-card h3 {
+	font-size: 18px;
+	margin: 0
+}
+
+.sd-express-category-card p {
+	font-size: 14px;
+	color: #69717a;
+	margin: 0
+}
+
+.sd-express-category-card small {
+	font-size: 12px;
+	color: var(--color--primary);
+	font-weight: 600
+}
+
+.sd-express-category-card img {
+	position: absolute;
+    right: 10px;
+    bottom: 0;
+    width: auto;
+    height: 200px;
+    object-fit: contain;
+    opacity: .8;
+}
+
+.sd-express-section-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 32px
+}
+
+.sd-express-section-head h2 {
+	display: flex;
+    margin: 0;
+    gap: 10px;
+}
+
+.sd-express-section-head h2 img {
+	height: auto;
+    width: 90px;
+}
+
+.sd-express-section-head a {
+	color: var(--color--primary);
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 14px
+}
+
+.sd-express-product-grid {
+	display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.sd-express-product-card {
+	border: 1px solid var(--line);
+	border-radius: 12px;
+	padding: 16px;
+	background: #fff;
+	transition: all .2s;
+	position: relative
+}
+
+.sd-express-product-card:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+	transform: translatey(-4px)
+}
+
+.sd-express-product-card button.heart {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	border: 0;
+	background: rgba(255, 255, 255, .9);
+	border-radius: 50%;
+	width: 32px;
+	height: 32px;
+	font-size: 16px;
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	transition: all .2s
+}
+
+.sd-express-product-card button.heart:hover {
+	background: #fff;
+	transform: scale(1.1)
+}
+
+.sd-express-product-card button.heart.selected {
+	color: #e91e63
+}
+
+.sd-express-product-card img {
+	width: 100%;
+	height: 180px;
+	object-fit: contain;
+	margin-bottom: 12px
+}
+
+.sd-express-product-card h4 {
+	font-size: 14px;
+	margin: 0 0 8px;
+	line-height: 1.4;
+	height: 40px;
+	overflow: hidden
+}
+
+.sd-express-product-card strong {
+	font-size: 18px;
+	color: var(--ink);
+	display: block;
+	margin-bottom: 4px
+}
+
+.sd-express-product-card small {
+	font-size: 12px;
+	color: #69717a;
+	display: block;
+	margin-bottom: 8px
+}
+
+.sd-express-product-card p {
+	font-size: 12px;
+	color: #f59e0b;
+	margin: 0 0 12px
+}
+
+.sd-express-product-card em {
+	color: #69717a;
+	font-size: 11px
+}
+
+.sd-express-product-card>div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px
+}
+
+.sd-express-product-card span {
+	font-size: 11px;
+	color: var(--green);
+	background: rgba(16, 157, 57, .1);
+	padding: 4px 8px;
+	border-radius: 4px
+}
+
+.sd-express-product-card button.add-cart {
+	border: 0;
+	background: var(--color--primary);
+	color: #fff;
+	border-radius: 6px;
+	padding: 8px 12px;
+	font-size: 14px;
+	cursor: pointer;
+	transition: all .2s
+}
+
+.sd-express-product-card button.add-cart:hover {
+	background: var(--color--tertiary)
+}
+
+.sd-express-promos {
+	display: flex;
+    gap: 24px;
+    margin: 20px auto;
+    align-items: center;
+    justify-content: center;
+    width: min(1180px, calc(100% - 48px));
+}
+
+.sd-express-promo {
+	border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    min-height: 200px;
+    position: relative;
+    width: 100%;
+}
+
+.sd-express-promo.orange {
+	background-image: url(../img/sd-express/banner1.webp);
+	background-size: cover;
+    background-position: center right;
+}
+
+.sd-express-promo.green {
+	background-image: url(../img/sd-express/banner2.webp);
+	background-size: cover;
+    background-position: center right;
+}
+.sd-express-promo.green::before {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background: linear-gradient(135deg, #00000080 0, transparent 100%);
+}
+
+.sd-express-promo>div {
+	padding: 32px;
+	flex: 1;
+	position: relative;
+	z-index: 12
+}
+
+.sd-express-promo small {
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	color: rgba(255, 255, 255, .9);
+	display: block;
+	margin-bottom: 8px
+}
+
+.sd-express-promo h2 {
+	font-size: 28px;
+	margin: 0 0 8px;
+	color: #fff;
+	line-height: 1.2
+}
+
+.sd-express-promo h2 span {
+	font-size: 18px;
+	font-weight: 400
+}
+
+.sd-express-white-btn {
+	display: inline-block;
+	padding: 12px 20px;
+	background: #fff;
+	color: var(--color--primary);
+	text-decoration: none;
+	border-radius: 6px;
+	font-weight: 600;
+	margin-top: 16px;
+	transition: all .2s
+}
+
+.sd-express-promo.green .sd-express-white-btn {
+	color: var(--green)
+}
+
+.sd-express-white-btn:hover {
+	transform: translatex(4px)
+}
+
+.sd-express-promo img,
+.sd-express-promo .sd-express-mini-solar {
+	position: absolute;
+	right: 10px;
+	bottom: 0;
+	width: 45%;
+	height: 100%;
+	object-fit: contain
+}
+
+.sd-express-mini-solar {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center
+}
+
+.sd-express-why-grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 24px;
+	margin-top: 32px
+}
+
+.sd-express-why-grid>div {
+	display: flex;
+	flex-direction: column;
+	gap: 8px
+}
+
+.sd-express-why-grid h4 {
+	font-size: 16px;
+	margin: 0
+}
+
+.sd-express-why-grid p {
+	font-size: 13px;
+	color: #69717a;
+	margin: 0;
+	line-height: 1.5
+}
+
+.sd-express-footer {
+	background: #07090b;
+	color: #f4f4f4;
+	padding: 48px 0 24px;
+	grid-template-columns: 1fr;
+}
+
+.sd-express-footer-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 32px
+}
+
+.sd-express-footer-logo {
+	margin-bottom: 16px
+}
+
+.sd-express-footer p {
+	font-size: 13px;
+	color: #9ca3af;
+	line-height: 1.6;
+	margin: 0 0 16px
+}
+
+.sd-express-socials {
+	display: flex;
+	gap: 12px;
+	margin-bottom: 16px
+}
+
+.sd-express-socials span {
+	width: 32px;
+	height: 32px;
+	background: rgba(255, 255, 255, .1);
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+	transition: all .2s
+}
+
+.sd-express-socials span:hover {
+	background: var(--color--primary)
+}
+
+.sd-express-footer small {
+	font-size: 11px;
+	color: #6b7280
+}
+
+.sd-express-footer h4 {
+	font-size: 14px;
+	margin: 0 0 16px;
+	color: #fff
+}
+
+.sd-express-footer a {
+	display: block;
+	color: #9ca3af;
+	text-decoration: none;
+	font-size: 13px;
+	margin-bottom: 8px;
+	transition: all .2s
+}
+
+.sd-express-footer .sd-express-btn {
+	display: flex;
+    justify-content: center;
+}
+
+.sd-express-no-products {
+	text-align: center;
+	padding: 40px 20px;
+	background: #f9fafb;
+	border-radius: 12px;
+	border: 2px dashed #e5e7eb
+}
+
+.sd-express-no-products p {
+	font-size: 16px;
+	color: #6b7280;
+	margin: 0 0 20px;
+	font-weight: 500
+}
+
+.sd-express-no-products .sd-express-btn {
+	display: inline-block;
+	padding: 12px 24px;
+	background: #15ad3c;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: all .2s
+}
+
+.sd-express-no-products .sd-express-btn:hover {
+	background: #0d8a2e;
+	transform: translateY(-2px)
+}
+
+.sd-express-product-item {
+	transition: opacity 0.3s ease, transform 0.3s ease
+}
+
+.sd-express-product-hidden {
+	display: none
+}
+
+.sd-express-load-more {
+	text-align: center;
+	margin-top: 30px;
+	padding: 20px;
+	width: 100%;
+}
+
+.sd-express-load-more-btn {
+	color: #6b7280;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 10px 20px;
+	border: 1px solid #e5e7eb;
+	border-radius: 6px;
+	transition: all 0.2s;
+	display: inline-block
+}
+
+.sd-express-load-more-btn:hover {
+	color: #15ad3c;
+	border-color: #15ad3c;
+	background: rgba(21, 173, 60, 0.05)
+}
+
+.sd-express-load-more-btn:active {
+	transform: scale(0.98)
+}
+
+@media (max-width: 768px) {
+	.sd-express-load-more {
+		margin-top: 20px;
+		padding: 15px
+	}
+	
+	.sd-express-load-more-btn {
+		font-size: 13px;
+		padding: 8px 16px;
+		width: 100%;
+		max-width: 200px
+	}
+}
+
+@media (max-width: 480px) {
+	.sd-express-load-more-btn {
+		font-size: 12px;
+		padding: 6px 12px
+	}
+}
+
+.sd-express-footer a:hover {
+	color: var(--color--primary)
+}
+
+.sd-express-footer form {
+	display: flex;
+	flex-direction: column;
+	gap: 8px
+}
+
+.sd-express-footer input {
+	padding: 10px 12px;
+	border: 1px solid rgba(255, 255, 255, .2);
+	background: rgba(255, 255, 255, .05);
+	border-radius: 6px;
+	color: #fff;
+	font-size: 13px
+}
+
+.sd-express-footer input::placeholder {
+	color: #6b7280
+}
+
+.sd-express-footer button {
+	padding: 10px 12px;
+	background: var(--color--primary);
+	color: #fff;
+	border: 0;
+	border-radius: 6px;
+	font-size: 13px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all .2s
+}
+
+.sd-express-footer button:hover {
+	background: var(--color--tertiary)
+}
+
+.sd-express-powered {
+	font-size: 11px;
+	color: #6b7280;
+	margin-top: 8px
+}
+
+.sd-express-vendor-info {
+	display: flex;
+    background: #f8f9fb;
+    padding: 32px;
+    border-radius: 12px;
+    margin: 32px 0;
+    width: 100% !important;
+    flex-direction: column;
+}
+
+.sd-express-vendor-info h3 {
+	display: flex;
+    margin: 0 0 16px;
+    font-size: 20px;
+    justify-content: center;
+}
+
+.sd-express-vendor-details {
+	display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.sd-express-vendor-detail {
+	display: grid;
+    grid-template-rows: subgrid;
+    grid-row: 1 / 3;
+    border-radius: var(--border-contenedores);
+    place-items: center;
+    gap: 5px;
+    width: min(100%, 200px);
+
+	span {
+		text-align: center;
+
+		a {
+			color: #69717a;
+			text-underline-offset: 2px;
+			transition: ease var(--tiempo--transiciones);
+		}
+		a:hover {
+			margin-left: 10px;
+		}
+	}
+}
+.sd-express-vendor-detail:first-child {
+	justify-self: end;
+}
+.sd-express-vendor-detail:last-child {
+	justify-self: start;
+}
+
+
+.sd-express-vendor-detail strong {
+	font-size: 14px;
+	color: var(--ink)
+}
+
+.sd-express-vendor-detail span {
+	font-size: 13px;
+	color: #69717a
+}
+
+.sd-express-toast {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	background: var(--ink);
+	color: #fff;
+	padding: 12px 20px;
+	border-radius: 8px;
+	font-size: 14px;
+	opacity: 0;
+	transform: translatey(20px);
+	transition: all .3s;
+	z-index: 1000
+}
+
+.sd-express-toast.show {
+	opacity: 1;
+	transform: translatey(0)
+}
+
+@media(max-width: 1300px) {
+	.sd-express-hero {
+		height: 100%;
+		padding: 40px 0;
+	}
+}
+
+@media(max-width: 1025px) {
+	.sd-express-nav {
+		gap: 16px
+	}
+	.sd-express-hero { 
+		padding: 20px 0;
+	}
+	.sd-express-hero-copy {
+		width: 50%;
+	}
+	.sd-express-hero h1 {
+		font-size: 52px
+	}
+	.sd-express-brand-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.sd-express-product-grid {
+		grid-template-columns: repeat(3, 1fr)
+	}
+	.sd-express-product-card:nth-child(n+4) {
+		display: none
+	}
+	.sd-express-footer-grid {
+		grid-template-columns: repeat(3, 1fr)
+	}
+}
+
+@media(max-width: 769px) {
+	.sd-express-promos {
+		flex-direction: column;	
+	}
+}
+
+@media(max-width: 769px) {
+	.sd-express-container {
+		width: min(90vw, 700px);
+	}
+	.sd-express-topbar {
+		height: auto;
+		padding: 10px; 
+		font-size: 10px;
+		flex-wrap: wrap
+	}
+	.sd-express-brand-grid {
+		grid-template-columns: repeat(1, 1fr);
+    }
+	.sd-express-header {
+		height: 68px
+	}
+	.sd-express-logo b {
+		font-size: 26px
+	}
+	.sd-express-header-actions {
+		gap: 4px
+	}
+	.sd-express-hero {
+		height: 100%;
+		background-image: none;
+	}
+	.sd-express-hero-content {
+		align-items: flex-start; 
+	}
+	.sd-express-hero-copy {
+		width: 100%
+	}
+	.sd-express-hero h1 {
+		font-size: 48px
+	}
+	.sd-express-hero-art {
+		width: 120%;
+		right: -12%;
+		top: 250px;
+		height: 350px
+	}
+	.sd-express-hero-buttons {
+		margin-top: 20px
+	}
+	.sd-express-hero-trust {
+		gap: 10px;
+		font-size: 10px
+	}
+	.sd-express-benefits {
+		display: none;
+	}
+	.sd-express-benefit-grid div:last-child {
+		display: none
+	}
+	.sd-express-brand-grid,
+	.sd-express-category-grid,
+	.sd-express-promos {
+		grid-template-columns: 1fr
+	}
+	.sd-express-product-grid {
+		grid-template-columns: repeat(2, 1fr)
+	}
+	.sd-express-product-card:nth-child(n+5) {
+		display: none
+	}
+	.sd-express-why-grid {
+		grid-template-columns: 1fr 1fr
+	}
+	.sd-express-footer-grid {
+		grid-template-columns: 1fr 1fr
+	}
+	.sd-express-hero-arrow {
+		display: none
+	}
+	.sd-express-section {
+		padding-top: 28px
+	} 
+}
+
+@media (max-width: 650px) {
+	.sd-express-nav {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+	.sd-express-header {
+		padding: 10px 20px;
+	}
+    .sd-express-product-item { 
+        width: 48%;
+    }
+	.sd-express-hero h1 {
+        font-size: 32px;
+    }
+	.sd-express-lead {
+		font-size: 12px;
+	}
+	.sd-express-hero-buttons {
+		flex-direction: column;
+	}
+	.sd-express-btn {
+		width: fit-content;
+	}
+	.sd-express-topbar { 
+        gap: 10px;
+    }
+	.producto-moto {
+		width: 100%;
+	}
+	.sd-express-footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 426px) { 
+	.sd-express-brand-card.sako { 
+		background-position: bottom right; 
+	}
+	.sd-express-promo>div {
+		padding: 20px;
+	}
+	.sd-express-promo h2 {
+		font-size: 18px; 
+	}
+	.sd-express-promo h2 span {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 410px) {
+	.sd-express-brand-card.torvan::before {
+		content: "";
+		display: block;
+		position: absolute;
+		z-index: 10;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, #00000080 0, transparent 100%);
+	}
+	.sd-express-brand-text {
+		z-index: 12;
+		width: 55%;
+	}
+	.sd-express-brand-card .torvan-text {
+		color: #e7e7e7;
+	}
+	.torvan .sd-express-brand-text .sd-express-brand-logo img {
+		filter: invert();
+	}
+}
+
+@media (max-width: 320px) {
+	.sd-express-brand-text {
+		width: 65%;
+	}
+}
+

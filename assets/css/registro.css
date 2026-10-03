@@ -1,0 +1,483 @@
+/* ============================================
+   MI CUENTA Y REGISTRO - ISLABEYA
+   ============================================ */
+
+/* Contenedor principal (compartido entre login y registro) */
+.islabeya-account-wrapper,
+.islabeya-registro-wrapper {
+    min-height: 100vh;
+    background-image: url('../img/Desktop\ Wallpaper.webp');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+/* Contenedor blanco central */
+.islabeya-account-container,
+.islabeya-registro-container {
+    background-color: white;
+    height: 100vh;
+    width: max(40%, 600px);
+    padding: 20px;
+    border-radius: 0 20px 20px 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.islabeya-login-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.islabeya-account-container h2,
+.islabeya-registro-container h2 {
+    font-size: 1.5rem;
+}
+
+/* Formularios (login y registro) */
+.woocommerce-form-login,
+.woocommerce-form-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.islabeya-registro-container .woocommerce-form-register, 
+.islabeya-account-container .islabeya-login-container .woocommerce-form-login{
+    width: min(400px, 100%);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.woocommerce-form-login > .form-row,
+.woocommerce-form-register > .form-row,
+.woocommerce-form-register > .show_if_seller {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* En login, los .form-row-wide deben alinearse igual que en registro */
+.woocommerce-form-login .form-row-wide,
+.woocommerce-form-login .form-row {
+    box-sizing: border-box;
+}
+
+/* Labels/iconos: forzamos el layout horizontal y consistencia */
+.woocommerce-form-login .form-row-wide,
+.woocommerce-form-login .form-row {
+    align-items: center;
+}
+
+.woocommerce-form-login label:not(.radio),
+.woocommerce-form-login label:not(.radio) img,
+.woocommerce-form-register label:not(.radio),
+.woocommerce-form-register label:not(.radio) img {
+    box-sizing: border-box;
+}
+
+.woocommerce-form-login .form-row-wide > label,
+.woocommerce-form-login .form-row-wide > span.password-wrapper,
+.woocommerce-form-login .form-row > label,
+.woocommerce-form-login .form-row > input,
+.woocommerce-form-login .form-row > span {
+    display: flex;
+    align-items: center;
+}
+
+.woocommerce-form-register .show_if_seller {
+    flex-direction: column;
+}
+
+.woocommerce-form-register .show_if_seller .form-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+/* Wrapper para URL de tienda */
+.store-url-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 10px;
+    width: 90%;
+    margin-top: -50px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+
+/* Labels con iconos */
+.woocommerce-form-login label:not(.radio),
+.woocommerce-form-register label:not(.radio) {
+    display: flex !important;
+    flex-shrink: 0;
+    height: 40px;
+    width: 40px;
+    background-color: var(--color--primary, #15ad3c);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.woocommerce-form-login label img,
+.woocommerce-form-register label img {
+    filter: brightness(0) invert(1);
+}
+
+/* Campos de entrada */
+.woocommerce-form-login input:not([type="radio"]):not([type="checkbox"]),
+.woocommerce-form-register input:not([type="radio"]):not([type="checkbox"]) {
+    box-sizing: border-box;
+    flex-grow: 1;
+    min-width: 0;
+    height: 40px;
+    padding: 1em;
+    font: inherit;
+    border-radius: 0 10px 10px 0;
+    border: 2px solid var(--color--secondary, #f5f5f5);
+    border-left: none;
+    background-color: var(--color--secondary, #f5f5f5);
+    transition: var(--tiempo--transiciones, 0.3s) ease;
+}
+
+.store-url-prefix {
+    font-size: .8rem;
+    color: var(--color--text_secondary, #6b7280);
+}
+
+/* Intl-tel-input */
+.iti {
+    width: 100%;
+}
+
+#shop-phone {
+    width: 100%;
+}
+
+/* Hover y focus */
+.woocommerce-form-login input:hover,
+.woocommerce-form-register input:hover {
+    border-color: var(--color--hover_primary, #15AD3CE8);
+}
+
+.woocommerce-form-login input:focus,
+.woocommerce-form-register input:focus {
+    outline: none;
+    border-color: var(--color--hover_primary, #15AD3CE8);
+}
+
+.woocommerce-form-login input::placeholder,
+.woocommerce-form-register input::placeholder {
+    color: var(--color--text_secondary, #6b7280);
+}
+
+/* Botones de envío */
+.woocommerce-Button.button {
+    width: 100%;
+    background-color: var(--color--primary, #15ad3c);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.woocommerce-Button.button:hover {
+    background-color: var(--color--hover_primary, #0f8a2e);
+}
+
+/* Enlace "¿Perdiste tu contraseña?" */
+.woocommerce-LostPassword {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.woocommerce-LostPassword a {
+    text-decoration: none;
+    color: var(--color--primary, #15ad3c);
+    font-size: 14px;
+}
+
+.woocommerce-LostPassword a:hover {
+    text-decoration: underline;
+    text-underline-offset: var(--text-decoration-hover-offset, 3px);
+}
+
+/* Checkbox "Recordarme" */
+.woocommerce-form__label-for-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.woocommerce-form__input-checkbox {
+    width: 16px !important;
+    height: 16px !important;
+    flex-shrink: 0;
+}
+
+/* Enlaces para cambiar entre formularios */
+.auth-switch {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.auth-switch a {
+    text-decoration: none;
+    color: var(--color--primary, #15ad3c);
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+    text-underline-offset: var(--text-decoration-hover-offset, 3px);
+}
+
+/* Radio buttons */
+.vendor-customer-registration {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-row .radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.woocommerce-form-register input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+}
+
+.woocommerce-form-register input[type="radio"]:checked {
+    border-color: #15ad3c;
+    background: #15ad3c;
+    box-shadow: inset 0 0 0 3px white;
+    box-sizing: border-box;
+}
+
+.woocommerce-form-register .radio {
+    display: inline-flex !important;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+/* Ocultar/mostrar formularios */
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+/* Mensajes de error/notificaciones */
+.woocommerce-error,
+.woocommerce-info,
+.woocommerce-message {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    list-style: none;
+    text-align: center;
+    font-size: 14px;
+}
+
+.woocommerce-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.woocommerce-info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.woocommerce-message {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Estilos adicionales para la página de registro independiente */
+.login-link a {
+    text-decoration: none;
+    color: var(--color--primary);
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+    text-underline-offset: var(--text-decoration-hover-offset);
+}
+
+.woocommerce-form__label-for-checkbox {
+    height: 10px !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+}
+.woocommerce-info a {
+    color: var(--color--primary);
+    text-decoration: none;
+}
+.woocommerce-info a:hover {
+    text-decoration: underline;
+    text-underline-offset: var(--text-decoration-hover-offset);
+}
+
+/* Mensaje de error */
+.woocommerce-error::before, .woocommerce-info::before, .woocommerce-message::before {
+    top: 5px !important;
+    left: 5px !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .islabeya-account-container,
+    .islabeya-registro-container {
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+    }
+    
+    .islabeya-auth-container {
+        width: 90%;
+    }
+    
+    .store-url-wrapper {
+        width: 85%;
+        margin-left: 30px;
+    }
+}
+
+
+/* Animación suave para el toggle */
+.toggle-password {
+    transition: transform 0.2s ease;
+}
+
+.toggle-password:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Mejora visual del input cuando tiene el toggle */
+.password-wrapper input:focus {
+    padding-right: 45px;
+}
+
+/* Efecto ripple al hacer clic */
+.toggle-password:active {
+    transform: translateY(-50%) scale(0.95); 
+}
+
+.registro-intro {
+    text-align: center;
+}
+
+/* ============================================
+   TOGGLE DE CONTRASEÑA
+   ============================================ */
+
+/* El wrapper debe ser inline para mantener la estructura */
+.password-wrapper {
+    position: relative;
+    display: inline-block;
+    flex: 1;
+    width: calc(100% - 40px);
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 45px !important;
+    box-sizing: border-box;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.toggle-password:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.toggle-password:hover svg path {
+    fill: var(--color--primary, #15ad3c);
+}
+
+.toggle-password:focus {
+    outline: none;
+}
+
+.eye-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animación suave para el toggle */
+.toggle-password {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.toggle-password:hover {
+    transform: translateY(-50%) scale(1.1);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Efecto ripple al hacer clic */
+.toggle-password:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Ajuste responsive para móviles */
+@media (max-width: 600px) {
+    .toggle-password {
+        right: 10px;
+    }
+    
+    .password-wrapper input {
+        padding-right: 40px !important;
+    }
+}

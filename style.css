@@ -1,0 +1,64 @@
+/*
+Theme Name: Tema IslaBeya
+Theme URI: 
+Author: @Kumagaro Javier Sánchez Zerquera
+Author URI: 
+Description: Tema IslaBeya es un tema desarrollado solamente para el negocio IslaBeya con funciones y elementos específicos del negocio. No estará diseñado para manejar plugins adicionales de maquetación de contenido, digase Elementor o Gutemberg, pueden ser utilizados pero no se asegura compatibilidades ni funcionamiento óptimo del tema en combinación con estos maquetadores. Tema IslaBeya es un tema clásico destinado a ser usado con WooCommerce, Dokan y MONIE para su correcto funcionamiento.
+Version: 1.0.8.1
+Requires at least: 6.5
+Tested up to: 6.9
+Requires PHP: 7.4
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: temaislabeya
+
+✨ VERSIÓN 1.0.8.1 - Novedades:
+-Cambiado rango de tiempo de entraga de productos a 60-90 días. Antes 40 dias.
+
+✨ VERSIÓN 1.0.8 - Novedades:
+-Agregada funcion de notificación de correos por telegram /inc/telegram-islabeya.php
+
+✨ VERSIÓN 1.0.7 - Novedades:
+-Agregado el nuevo diseño al resto de correos de Woocommerce y Dokan.
+-Creado nuevo diseño de página de tienda Sdexpress. 
+
+✨ VERSIÓN 1.0.6 - Novedades:
+-Nuevo tipo de entrega
+-Cambiado la orientacion del orden de la tienda. 
+
+✨ VERSIÓN 1.0.5 - Novedades:
+-Nuevas plantillas de correos.
+-Optimización de imágenes
+
+✨ VERSIÓN 1.0.4 - Novedades:
+-Campos de envio y facturacion en orden semantico para mejor experiencia de compra.
+-Optimizacion de metricas de rendimiento:
+    -Eliminacion de fuentes no usadas.
+    -Eliminacion de reforzado forzado en el video
+    -Optimicación de CSS no crítico
+    -Implementación de defer en scripts
+    -Optimización de LCP
+    -Preconnect para Google y Monei.
+
+✨ VERSIÓN 1.0.3 - Novedades:
+-Editada la plantilla thankyou.php retocando estilos y eliminando la tabla de resumen del pedido
+-Eliminados los 8 archivos de JS dedicados a carruseles y unificado en un solo archivo JS llamado carrusel.js, para mejorar la velocidad de carga y optimizar el código.
+-Eliminado console.logs que ensuciaban la consola del navegador y generaban errores en la carga de los carruseles.
+-Ahora todos los archivos js se inician en las plantillas que usan sus funcionalidades.
+-Agregado campo de numero de casa en formulario de Envio
+-Guardado de toda la informacion en envio en la base de datos
+-Arreglado diseño de las paginas de Form-pay y thankyou para que se vean correctamente en dispositivos moviles
+-ERROR CRITICO: Arreglado el problema de los pagos al seleccionar un pais diferente a Cuba en el campo de facturacion y las pasarelas tomaban el pais como el pais de envio. Esto generaba errores a la hora de intentar pagar con cualquier pasarela de pago.
+El problema era que el checkbox de enviar a otra direccion no estaba agregado en el formulario.
+
+✨ VERSIÓN 1.0.2 - Novedades:
+- Mejorada experiencia de compra para el usuario, con un nuevo diseño de la página de checkout.
+- Mejorada experiencia de compra para el usuario, con un nuevo diseño de la página de gracias por su compra.
+- Mejorada experiencia de compra para el usuario, con un nuevo diseño de la página de order-pay.
+- Arreglado el problema de compatibilidad con el plugin Tropipay, ahora el plugin funciona correctamente con el tema.
+
+✨ VERSIÓN 1.0.1 - Novedades:
+- Arreglado errores minimos de diseño en las paginas de la Tienda
+
+Tema IslaBeya, Copyright 2026.
+*/

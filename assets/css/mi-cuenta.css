@@ -1,0 +1,367 @@
+/* ============================================
+   Barra de navegación
+   ============================================ */
+.icon-menu {
+    display: flex !important;
+}
+
+.woocommerce-MyAccount-content-wrapper {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+#sidebar,
+.woocommerce-MyAccount-content {
+    min-height: 100vh;
+}
+
+#sidebar {
+    box-sizing: border-box;
+    width: 250px;
+    padding: 5px 1rem;
+    background-color: white;
+    border-right: 1 solid var(--color--text_secondary);
+
+    position: sticky;
+    top: 0;
+    align-self: start;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+}
+#sidebar.close {
+    padding: 5px;
+    width: 60px;
+}
+#sidebar.close a {
+    gap: 0 !important;
+    span {
+        font-size: 0px;
+    }
+}
+#sidebar > ul > li:first-child {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+#sidebar ul li.is-active a {
+    color: var(--color--primary);
+    .icon-menu {
+        filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(92%) contrast(104%);
+    }
+}
+#sidebar a {
+    border-radius: .5rem;
+    padding: .85rem;
+    text-decoration: none;
+    color: var(--color--text);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+#sidebar a:hover {
+    background-color: var(--color--secondary);
+}
+
+#toggle-btn {
+    margin-left: auto;
+    padding: 10px;
+    border: none;
+    border-radius: .5rem;
+    background: none;
+    cursor: pointer;
+
+    span {
+        transform: rotate 150ms ease;
+    }
+}
+.rotate span {
+    rotate: 180deg;
+}
+#toggle-btn:hover {
+    background-color: var(--color--secondary);
+}
+button.icon-principal {
+    display: none;
+}
+
+@media(max-width:770px) {
+    .woocommerce-MyAccount-content-wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .woocommerce-MyAccount-content {
+        min-height: 95vh;
+    }
+    #sidebar {
+        min-height: 5vh;
+        width: 100%;
+        padding: 0px !important;
+        z-index: 2;
+    }
+    #sidebar ul {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #sidebar ul li:not(li.menu-cuenta-movil) {
+        display: none;
+    }
+    #sidebar > ul > li:first-child {
+        margin-bottom: 0px;
+    }
+    /* Para cuando el menu de movil se activo */
+    #sidebar.active-movil {
+        position: fixed;
+        padding: 5px;
+        width: 300px;
+        min-height: 100vh;
+        top: 0;
+        right: 0;
+    }
+    #sidebar.active-movil ul li {
+        display: flex !important;
+        min-width: 100%;    
+    }
+    #sidebar.active-movil a {
+        gap: 1rem !important;
+        width: 100%;
+        span {
+            font-size: 14px !important;
+        } 
+    }
+    #sidebar > ul > li:first-child {
+        align-self: flex-end !important;
+    }
+    #sidebar.active-movil ul {
+        align-self: end;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    button.active-movil {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.25) !important;
+        width: 100%;
+        height: 100%;
+        span {
+            display: none !important;
+        }
+    }
+}
+/* Para que todo el contenido este centrado */
+.woocommerce-MyAccount-content {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* ============================================
+   Pagina de Dashboar
+   ============================================ */
+.islabeya-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.dashboard-welcome-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 30px;
+}
+.welcome-avatar {
+    height: 80px;
+}
+.welcome-avatar img {
+    border-radius: 10px;
+}
+.dashboard-stats-grid {
+    display: flex;
+    gap: 10px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+.stat-card, .stat-card {
+    display: flex;
+    gap: 5px;
+}
+.dashboard-recent-orders, .islabeya-orders-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    gap: 20px;
+}
+.woocommerce-orders-table {
+    -webkit-border-horizontal-spacing: 30px;
+    -webkit-border-vertical-spacing: 20px;
+}
+
+.woocommerce-orders-table > tbody > tr > td {
+    font-size: 14px;
+    color: var(--color--text_secondary);
+}
+.status-failed, 
+.status-cancelled, 
+.status-completed, 
+.status-pending, 
+.status-processing,
+.status-on-hold,
+.status-refunded  {
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+.status-failed, 
+.status-cancelled, 
+.status-completed, 
+.status-processing,
+.status-on-hold,
+.status-refunded  {
+    color: white;
+}
+.status-failed {
+    background-color: rgb(237 20 61 / 75%);
+}
+.status-cancelled,
+.status-on-hold  {
+    background-color: rgb(255 146 0 / 75%);
+}
+.status-completed, .status-processing {
+    background-color: #15ad3c;
+}
+.status-pending {
+    background-color: var(--color--secondary);
+}
+.status-refunded {
+    background-color: violet;
+}
+
+.btn-view-order, .btn-view-all, .btn-back-to-orders {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    text-decoration: none;
+    transition: var(--tiempo--transiciones) ease;
+}
+.btn-view-order:hover, .btn-view-all:hover, .btn-back-to-orders:hover {
+    background-color: white;
+    box-shadow: var(--shadow--natural);
+}
+
+@media(max-width:426px) {
+    .islabeya-dashboard-container, .woocommerce-MyAccount-content {
+        max-width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .dashboard-recent-orders, .islabeya-orders-container{
+        max-width: stretch;
+    }
+    .recent-orders-table, .orders-table-wrapper {
+        overflow-x: scroll; 
+        max-width: 100%;
+    }
+    .btn-view-order, .btn-view-all, .btn-back-to-orders {
+        display: flex;
+        flex-wrap: nowrap;
+        min-width: max-content;
+    }
+}
+/* ============================================
+   Vista del pedido
+   ============================================ */
+
+   .islabeya-view-order-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        gap: 20px;
+        max-width: 100%;
+        box-sizing: border-box;
+   }
+   .order-details-grid {
+        max-width: 100%;
+   }
+   .order-items-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+   }
+   .order-items-table {
+        -webkit-border-horizontal-spacing: 30px;
+        -webkit-border-vertical-spacing: 10px;
+   }
+    .order-items-table tr {
+        color: var(--color--text_secondary);
+    }
+    .order-address-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .address-card {
+        color: var(--color--text_secondary);
+    }
+@media(max-width:426px) {
+    .order-items-table-contain {
+        overflow-x: scroll;
+        max-width: 100%;
+        
+    }
+    .order-items-table {
+        text-wrap: nowrap;
+    }
+}
+
+/* ============================================
+   Detalles de la cuenta
+   ============================================ */
+
+   .woocommerce form .form-row .input-text, .woocommerce-page form .form-row .input-text {
+        box-sizing: border-box;
+        width: 100%;
+        height: 44px;
+        padding: 30px 20px 16px;
+        color: gray;
+        border-radius: 10px;
+        border: 1px solid #00000045;
+    }
+    .woocommerce-page form .form-row-first,
+    .woocommerce-page form .form-row-last,
+    .woocommerce-page form .form-row-wide {
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .woocommerce-page form .form-row label {
+        position: absolute;
+        top: 2px;
+        left: 10px;
+    }
+    fieldset {
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }

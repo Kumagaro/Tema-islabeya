@@ -1,0 +1,670 @@
+/*==================================================================================================
+Carrusel de Productos
+==================================================================================================*/
+
+.productos-frontend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.productos, 
+.productos-despensa, 
+.productos-contenedor,
+.productos-solares,
+.productos-equipos{
+  width: var(--tamano-contenedores);
+}
+
+.productos h2, 
+.productos-despensa h2, 
+.productos-contenedor h2,
+.productos-solares h2,
+.productos-equipos h2 {
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.productos .seccion-productos, 
+.productos-despensa .seccion-productos-despensa, 
+.productos-contenedor .seccion-productos-contenedor,
+.productos-solares .seccion-productos-solares,
+.productos-equipos .seccion-productos-equipos {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    position: relative;
+}
+
+.moto-destacada, .carrusel-motos, .carrusel-motos-movil, 
+.despensa-destacada, .carrusel-despensas, .carrusel-despensas-movil,
+.contenedor-destacada, .carrusel-contenedor, .carrusel-contenedor-movil,
+.solares-destacada, .carrusel-solares, .carrusel-solares-movil,
+.equipos-destacada, .carrusel-equipos, .carrusel-equipos-movil {
+    background-color: white;
+    box-shadow: var(--shadow--natural);
+    border-radius: 10px;
+    padding: 20px;
+}
+.moto-destacada {
+    width: fit-content;
+    flex-shrink: 0;  
+}
+
+/*==================================================================================================
+Animacion en producto del dia
+==================================================================================================*/
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.efecto-destacado {
+    padding: 2px;
+    background-image: conic-gradient(from var(--angle), var(--color--secondary), var(--color--primary), var(--color--secondary));
+    animation: 3s spin linear infinite;
+    border-radius: 10px;
+}
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+/*==================================================================================================
+Fin de animacion de producto del dia
+==================================================================================================*/
+.products {
+  padding: 0px;
+}
+.textos {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+}
+.textos a {
+    text-decoration: none;
+    font-size: .75rem;
+    margin-bottom: 10px;
+}
+.textos a:hover {
+    text-decoration: underline;
+    text-underline-offset: var(--text-decoration-hover-offset); 
+}
+@media (max-width: 800px) {
+    .productos-frontend {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .productos-frontend {
+        margin-bottom: 10px;
+    }
+    .efecto-destacado {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .moto-destacada {
+        width: auto;
+    }
+    .productos-de-la-tienda-v2 .columnas-principal figure {
+        width: 100%;
+    }
+    .productos .seccion-productos, 
+    .productos-despensa .seccion-productos-despensa, 
+    .productos-contenedor .seccion-productos-contenedor,
+    .productos-solares .seccion-productos-solares,
+    .productos-equipos .seccion-productos-equipos {
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    .carrusel-motos, 
+    .carrusel-despensas, 
+    .carrusel-contenedor,
+    .carrusel-solares,
+    .carrusel-equipos {
+        display: none !important;
+    }
+    .carrusel-motos-movil, 
+    .carrusel-despensas-movil, 
+    .carrusel-contenedor-movil,
+    .carrusel-solares-movil,
+    .carrusel-equipos-movil {
+        display: flex !important;
+        flex-direction: column;
+        padding: 10px;
+        align-items: flex-start;
+    }
+    .carrusel-motos-movil .products, 
+    .carrusel-despensas-movil .products, 
+    .carrusel-contenedor-movil .products,
+    .carrusel-solares-movil .products,
+    .carrusel-equipos-movil .products {
+        gap: 10px;
+        columns: 2;
+    }
+    .textos {
+        margin-bottom: 10px;
+    }
+    .dots-container-moto, 
+    .dots-container-solares,
+    .dots-container-equipos,
+    .dots-container-despensa,
+    .dots-container-contenedor {
+        display: none !important;
+    }
+}
+
+/*==================================================================================================
+Carrusel de Motos
+==================================================================================================*/
+
+.carrusel-motos {
+    overflow-x: hidden;
+    anchor-name: --carrusel-motos;
+}
+.carrusel-productos-motos {
+    display: flex;
+    width: 100%;
+}
+.carrusel-productos-motos {
+    gap: 10px;
+}
+.carrusel-productos-motos ul {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+}
+.btn-left-motos .icon-arrow-left, .btn-right-motos .icon-arrow-right {
+    display: flex;
+}
+.btn-left-motos, .btn-right-motos {
+    position: fixed;
+    position-anchor: --carrusel-motos;
+    position-area: right center;
+    background-color: var(--color--secondary);
+    width: fit-content;
+    padding: 15px;
+    height: fit-content;
+    border-radius: 50%;
+    box-shadow: var(--shadow--natural);
+    transition: all var(--tiempo--transiciones) ease;
+    cursor: pointer;
+}
+.btn-left-motos {
+    position-area: left center;
+    translate: 20%;
+}
+.btn-right-motos {
+    translate: -20%;
+}
+.btn-left-motos:hover, .btn-right-motos:hover {
+    transform: scale(1.1);
+    background-color: white;
+}
+.dots-container-moto {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    z-index: 100;
+}
+.dotmoto {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #0000007d;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.dotmoto.active {
+    background-color: #15ad3c;
+}
+
+.carrusel-motos-movil {
+    display: none;
+} 
+
+/*==================================================================================================
+Carrusel de despensas
+==================================================================================================*/
+
+.carrusel-despensas {
+    overflow-x: hidden;
+    anchor-name: --carrusel-despensas;
+}
+.carrusel-productos-despensas {
+    display: flex;
+    width: 100%;
+}
+.carrusel-productos-despensas {
+    gap: 10px;
+}
+.carrusel-productos-despensas ul {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+}
+.btn-left-despensas .icon-arrow-left, .btn-right-despensas .icon-arrow-right {
+    display: flex;
+}
+.btn-left-despensas, .btn-right-despensas {
+    position: fixed;
+    position-anchor: --carrusel-despensas;
+    position-area: right center;
+    background-color: var(--color--secondary);
+    width: fit-content;
+    padding: 15px;
+    height: fit-content;
+    border-radius: 50%;
+    box-shadow: var(--shadow--natural);
+    transition: all var(--tiempo--transiciones) ease;
+    cursor: pointer;
+}
+.btn-left-despensas {
+    position-area: left center;
+    translate: 20%;
+}
+.btn-right-despensas {
+    translate: -20%;
+}
+.btn-left-despensas:hover, .btn-right-despensas:hover {
+    transform: scale(1.1);
+    background-color: white;
+}
+.dots-container-despensa {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    z-index: 100;
+}
+.dotdespensa {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #0000007d;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.dotdespensa.active {
+    background-color: #15ad3c;
+}
+
+.carrusel-despensas-movil {
+    display: none;
+} 
+
+/*==================================================================================================
+Carrusel de contenedor
+==================================================================================================*/
+
+.carrusel-contenedor {
+    overflow-x: hidden;
+    anchor-name: --carrusel-contenedor;
+}
+.carrusel-productos-contenedor {
+    display: flex;
+    width: 100%;
+}
+.carrusel-productos-contenedor {
+    gap: 10px;
+}
+.carrusel-productos-contenedor ul {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+}
+.btn-left-contenedor .icon-arrow-left, .btn-right-contenedor .icon-arrow-right {
+    display: flex;
+}
+.btn-left-contenedor, .btn-right-contenedor {
+    position: fixed;
+    position-anchor: --carrusel-contenedor;
+    position-area: right center;
+    background-color: var(--color--secondary);
+    width: fit-content;
+    padding: 15px;
+    height: fit-content;
+    border-radius: 50%;
+    box-shadow: var(--shadow--natural);
+    transition: all var(--tiempo--transiciones) ease;
+    cursor: pointer;
+}
+.btn-left-contenedor {
+    position-area: left center;
+    translate: 20%;
+}
+.btn-right-contenedor {
+    translate: -20%;
+}
+.btn-left-contenedor:hover, .btn-right-contenedor:hover {
+    transform: scale(1.1);
+    background-color: white;
+}
+.dots-container-contenedor {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    z-index: 100;
+}
+.dotcontenedor {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #0000007d;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.dotcontenedor.active {
+    background-color: #15ad3c;
+}
+
+.carrusel-contenedor-movil {
+    display: none;
+} 
+
+/*==================================================================================================
+Carrusel de solares
+==================================================================================================*/
+
+.carrusel-solares {
+    overflow-x: hidden;
+    anchor-name: --carrusel-solares;
+}
+.carrusel-productos-solares {
+    display: flex;
+    width: 100%;
+}
+.carrusel-productos-solares {
+    gap: 10px;
+}
+.carrusel-productos-solares ul {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+}
+.btn-left-solares .icon-arrow-left, .btn-right-solares .icon-arrow-right {
+    display: flex;
+}
+.btn-left-solares, .btn-right-solares {
+    position: fixed;
+    position-anchor: --carrusel-solares;
+    position-area: right center;
+    background-color: var(--color--secondary);
+    width: fit-content;
+    padding: 15px;
+    height: fit-content;
+    border-radius: 50%;
+    box-shadow: var(--shadow--natural);
+    transition: all var(--tiempo--transiciones) ease;
+    cursor: pointer;
+}
+.btn-left-solares {
+    position-area: left center;
+    translate: 20%;
+}
+.btn-right-solares {
+    translate: -20%;
+}
+.btn-left-solares:hover, .btn-right-solares:hover {
+    transform: scale(1.1);
+    background-color: white;
+}
+.dots-container-solares {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    z-index: 100;
+}
+.dotsolares {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #0000007d;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.dotsolares.active {
+    background-color: #15ad3c;
+}
+
+.carrusel-solares-movil {
+    display: none;
+} 
+
+
+/*==================================================================================================
+Carrusel de equipos
+==================================================================================================*/
+
+.carrusel-equipos {
+    overflow-x: hidden;
+    anchor-name: --carrusel-equipos;
+}
+.carrusel-productos-equipos {
+    display: flex;
+    width: 100%;
+}
+.carrusel-productos-equipos {
+    gap: 10px;
+}
+.carrusel-productos-equipos ul {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+}
+.btn-left-equipos .icon-arrow-left, .btn-right-equipos .icon-arrow-right {
+    display: flex;
+}
+.btn-left-equipos, .btn-right-equipos {
+    position: fixed;
+    position-anchor: --carrusel-equipos;
+    position-area: right center;
+    background-color: var(--color--secondary);
+    width: fit-content;
+    padding: 15px;
+    height: fit-content;
+    border-radius: 50%;
+    box-shadow: var(--shadow--natural);
+    transition: all var(--tiempo--transiciones) ease;
+    cursor: pointer;
+}
+.btn-left-equipos {
+    position-area: left center;
+    translate: 20%;
+}
+.btn-right-equipos {
+    translate: -20%;
+}
+.btn-left-equipos:hover, .btn-right-equipos:hover {
+    transform: scale(1.1);
+    background-color: white;
+}
+.dots-container-equipos {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    z-index: 100;
+}
+.dotequipos {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #0000007d;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.dotequipos.active {
+    background-color: #15ad3c;
+}
+
+.carrusel-equipos-movil {
+    display: none;
+} 
+
+
+/*==================================================================================================
+Carrusel de Combos
+==================================================================================================*/
+
+.productos-combo {
+    width: var(--tamano-contenedores);
+}
+
+.productos-combo h2 {
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.productos-combo .seccion-productos-combo {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    position: relative;
+}
+
+.carrusel-combo {
+    background-color: white;
+    box-shadow: var(--shadow--natural);
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: hidden;
+    anchor-name: --carrusel-combo;
+}
+
+.carrusel-productos-combo {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.carrusel-productos-combo ul {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+}
+
+.btn-left-combo .icon-arrow-left, 
+.btn-right-combo .icon-arrow-right {
+    display: flex;
+}
+
+.btn-left-combo, 
+.btn-right-combo {
+    position: fixed;
+    position-anchor: --carrusel-combo;
+    position-area: right center;
+    background-color: var(--color--secondary);
+    width: fit-content;
+    padding: 15px;
+    height: fit-content;
+    border-radius: 50%;
+    box-shadow: var(--shadow--natural);
+    transition: all var(--tiempo--transiciones) ease;
+    cursor: pointer;
+}
+
+.btn-left-combo {
+    position-area: left center;
+    translate: 20%;
+}
+
+.btn-right-combo {
+    translate: -20%;
+}
+
+.btn-left-combo:hover, 
+.btn-right-combo:hover {
+    transform: scale(1.1);
+    background-color: white;
+}
+
+.dots-container-combo {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    z-index: 100;
+}
+
+.dotcombo {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #0000007d;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dotcombo.active {
+    background-color: #15ad3c;
+}
+
+.carrusel-combo-movil {
+    display: none;
+}
+
+/* Versión móvil */
+@media (max-width: 800px) {
+    .productos-combo .seccion-productos-combo {
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .carrusel-combo {
+        display: none !important;
+    }
+    
+    .carrusel-combo-movil {
+        display: flex !important;
+        width: 95%;
+        flex-direction: column;
+        padding: 10px;
+        align-items: flex-start;
+        background-color: white;
+        box-shadow: var(--shadow--natural);
+        border-radius: 10px;
+    }
+    
+    .carrusel-combo-movil .products {
+        gap: 10px;
+        columns: 2;
+        width: 100%;
+    }
+    
+    .dots-container-combo {
+        display: none !important;
+    }
+}

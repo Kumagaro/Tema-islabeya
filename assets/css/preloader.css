@@ -1,0 +1,44 @@
+#islabeya-preloader{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--islabeya-preloader-bg, #ffffff);
+}
+
+#islabeya-preloader.is-hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition: opacity 180ms ease, visibility 180ms ease;
+}
+
+#islabeya-preloader .islabeya-preloader-content{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  max-width: 80vw;
+}
+
+#islabeya-preloader .islabeya-preloader-content{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#islabeya-preloader img{
+  display: block;
+  max-width: 360px;
+  width: 200;
+  height: auto;
+  animation: islabeya-preloader-blink 1000ms ease-in-out infinite alternate;
+}
+
+@keyframes islabeya-preloader-blink {
+  0% { opacity: 1; }
+  100% { opacity: 0.25; }
+}
+
+

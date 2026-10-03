@@ -1,0 +1,25 @@
+.entry-content {
+    width: var(--tamano-contenedores);
+    justify-self: center;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.entry-content svg {
+    background-color: white;
+    padding: 20px;
+    border-radius: 50%;
+    box-shadow: var(--shadow--natural);
+}
+
+@media(max-width: 426px) {
+    .woocommerce form .form-row {
+        padding: 0px;
+        margin: 0 0 6px;
+        width: 100%;
+    }
+} 
+
+    

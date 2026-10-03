@@ -1,0 +1,142 @@
+.entry-header, .toggle-view, .right, .entry-footer {
+    display: none !important;
+}
+#dokan-seller-listing-wrap {
+    margin: 0 !important;
+}
+.entry-content {
+    flex-direction: column;
+}
+#dokan-store-listing-filter-wrap {
+    width: 100%;
+}
+
+#dokan-seller-listing-wrap {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+#dokan-store-listing-filter-wrap .right .item .dokan-store-list-filter-button,
+#dokan-store-listing-filter-form-wrap .apply-filter #apply-filter-btn {
+    background-color: var(--color--primary);
+}
+#dokan-seller-listing-wrap ul.dokan-seller-wrap li .store-footer {
+    border-radius: 5px;
+}
+
+#dokan-seller-listing-wrap ul.dokan-seller-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style: none;
+    margin: 20px 0px;
+    padding: 0;
+}
+#dokan-seller-listing-wrap ul.dokan-seller-wrap:before, #dokan-seller-listing-wrap ul.dokan-seller-wrap:after {
+    display: none !important;
+}
+#dokan-seller-listing-wrap ul.dokan-seller-wrap li.coloum-3 {
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 0;
+}
+
+#dokan-seller-listing-wrap ul.dokan-seller-wrap li .store-footer .seller-avatar {
+    border-radius: 50% !important;
+}
+#dokan-seller-listing-wrap ul.dokan-seller-wrap li .store-content {
+    border-radius: 5px !important;
+}
+#dokan-seller-listing-wrap.grid-view .store-content .store-data-container .store-data .store-address {
+    color: white;
+}
+#dokan-seller-listing-wrap.grid-view .store-footer .dokan-btn-theme.dokan-btn-round {
+    background-color: var(--color--primary);
+}
+#dokan-seller-listing-wrap.grid-view .store-content .store-data-container {
+    padding: 10px 20px !important;
+}
+#dokan-seller-listing-wrap.grid-view .store-content .store-data-container .featured-favourite {
+    padding-bottom: 10px !important;
+    top: 0 !important;
+}
+#dokan-seller-listing-wrap.grid-view .store-content .store-data-container .store-data .store-phone {
+    margin: 0px !important;
+    color: white;
+    cursor: pointer;
+}
+#dokan-seller-listing-wrap.grid-view .store-content .store-data-container .featured-favourite .featured-label {
+    background: var(--color--tertiary) !important;
+}
+/* ============ Paginacion ============ */
+.pagination-wrap {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+.pagination-wrap ul.pagination {
+    display: inline-flex !important;
+    gap: 10px;
+}
+.pagination-wrap ul.pagination > li > a  {
+    display: flex !important;
+    padding: 8px 15px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: white !important;
+    border-radius: 10px !important;
+    color: black !important;
+    text-decoration: none !important;
+}
+.current {
+    opacity: .5 !important;
+    cursor: not-allowed !important;
+}
+#dokan-store-listing-filter-wrap .right .item button {
+    background-color: #15ad3c !important;
+}
+.dashicons-arrow-right-alt2:before {
+  content: ">" !important;
+  font-size: 26px !important;
+  line-height: 35px !important;
+}
+@media (max-width: 800px) {
+    #dokan-seller-listing-wrap ul.dokan-seller-wrap {
+        grid-template-columns: 1fr 1fr;
+    }
+    #dokan-store-listing-filter-wrap label, 
+    #dokan-store-listing-filter-wrap form label, 
+    #dokan-store-listing-filter-form-wrap * label, 
+    #dokan-store-listing-filter-wrap input, 
+    #dokan-store-listing-filter-wrap form input, 
+    #dokan-store-listing-filter-form-wrap * input, 
+    #dokan-store-listing-filter-wrap select, 
+    #dokan-store-listing-filter-wrap form select, 
+    #dokan-store-listing-filter-form-wrap * select, 
+    #dokan-store-listing-filter-wrap button, 
+    #dokan-store-listing-filter-wrap form button, 
+    #dokan-store-listing-filter-form-wrap * button, 
+    #dokan-store-listing-filter-wrap a, 
+    #dokan-store-listing-filter-wrap form a, 
+    #dokan-store-listing-filter-form-wrap * a, 
+    #dokan-store-listing-filter-wrap i, 
+    #dokan-store-listing-filter-wrap form i, 
+    #dokan-store-listing-filter-form-wrap * i, 
+    #dokan-store-listing-filter-wrap span, 
+    #dokan-store-listing-filter-wrap form span, 
+    #dokan-store-listing-filter-form-wrap * span, 
+    #dokan-store-listing-filter-wrap textarea, 
+    #dokan-store-listing-filter-wrap form textarea, 
+    #dokan-store-listing-filter-form-wrap * textarea {
+        font-size: 0.8rem !important;
+    }
+    #dokan-seller-listing-wrap {
+        padding: 0px;
+    }
+}
+
+@media (max-width: 426px) {
+    #dokan-seller-listing-wrap ul.dokan-seller-wrap {
+        grid-template-columns: 1fr;
+    }
+}

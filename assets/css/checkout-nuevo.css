@@ -1,0 +1,1170 @@
+/* ============================================================
+   CHECKOUT IslaBeya — 2 columnas / 3 pasos
+   ============================================================ */
+
+/* ---------- Layout general: 2 columnas ---------- */
+.islabeya-checkout-3pasos__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+    max-width: var(--tamano-contenedores, 1280px);
+    margin: 0 auto;
+    padding: 20px 16px;
+}
+
+/* ---------- Indicador de progreso ---------- */
+.islabeya-checkout-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.islabeya-checkout-progress__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    background: #fff;
+    color: var(--color--text_secondary, #6b7280);
+    font-family: var(--fuente--principal, 'Mi-Poppins');
+    font-size: var(--tamaño--secundario, .8rem);
+    font-weight: 500;
+    cursor: default;
+    transition: all var(--tiempo--transiciones, .3s) ease;
+}
+
+.islabeya-checkout-progress__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color--secondary, #f5f5f5);
+    color: var(--color--text_secondary, #6b7280);
+    font-size: var(--tamano--pequeno, 0.75rem);
+    font-weight: 600;
+    transition: all var(--tiempo--transiciones, .3s) ease;
+}
+
+.islabeya-checkout-progress__line {
+    flex: 0 0 24px;
+    height: 2px;
+    background: #ddd;
+    border-radius: 2px;
+    transition: background var(--tiempo--transiciones, .3s) ease;
+}
+
+.islabeya-checkout-progress__item.is-completed {
+    border-color: var(--color--primary, #15ad3c);
+    background: rgba(21, 173, 60, 0.06);
+    color: var(--color--tertiary, #004D35);
+    cursor: pointer;
+}
+
+.islabeya-checkout-progress__item.is-completed .islabeya-checkout-progress__num {
+    background: var(--color--primary, #15ad3c);
+    color: #fff;
+}
+
+.islabeya-checkout-progress__item.is-active {
+    border-color: var(--color--primary, #15ad3c);
+    background: var(--color--primary, #15ad3c);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(21, 173, 60, 0.25);
+}
+
+.islabeya-checkout-progress__item.is-active .islabeya-checkout-progress__num {
+    background: #fff;
+    color: var(--color--primary, #15ad3c);
+}
+
+.islabeya-checkout-progress__line.is-completed {
+    background: var(--color--primary, #15ad3c);
+}
+
+/* ---------- Pasos: visibility hidden (no rompe validación) ---------- */
+.islabeya-checkout-step {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    transition: opacity var(--tiempo--transiciones, .3s) ease;
+}
+
+.islabeya-checkout-step.is-active {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    overflow: visible;
+    margin: 0 0 20px;
+    pointer-events: auto;
+}
+
+/* ---------- Cabecera del paso ---------- */
+.islabeya-checkout-step__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.islabeya-checkout-step__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color--primary, #15ad3c);
+    color: #fff;
+    font-size: var(--tamano--principal, 1rem);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.islabeya-checkout-step__title {
+    margin: 0;
+    font-size: var(--tamano--principal, 1rem);
+    font-weight: 600;
+    color: var(--color--text, #000);
+    line-height: 1.3;
+}
+
+/* ---------- Cuerpo del paso (formularios WooCommerce) ---------- */
+.islabeya-checkout-step__body .woocommerce-billing-fields h3,
+.islabeya-checkout-step__body .woocommerce-shipping-fields h3,
+.islabeya-checkout-step__body #order_review_heading {
+    display: none;
+}
+
+.islabeya-checkout-step__body form,
+.islabeya-checkout-step__body .woocommerce-billing-fields,
+.islabeya-checkout-step__body .woocommerce-shipping-fields {
+    margin-bottom: 0;
+}
+
+.islabeya-checkout-step__body .form-row {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.islabeya-checkout-step__body .form-row label {
+    font-size: var(--tamaño--secundario, .8rem);
+    font-weight: 500;
+    color: var(--color--text, #000);
+    margin-bottom: 6px;
+}
+
+.islabeya-checkout-step__body .input-text,
+.islabeya-checkout-step__body select,
+.islabeya-checkout-step__body textarea,
+.islabeya-checkout-step__body .select2-container .select2-selection--single {
+    box-sizing: border-box;
+    width: 100%;
+    height: 44px;
+    padding: 30px 20px 16px;
+    border: 1px solid #00000045;
+    border-radius: var(--border-contenedores, 10px);
+    background: #fff;
+    font-family: var(--fuente--principal, 'Mi-Poppins');
+    font-size: var(--tamaño--secundario, .8rem);
+    color: var(--color--text, #000);
+    transition: border-color var(--tiempo--transiciones, .3s) ease, box-shadow var(--tiempo--transiciones, .3s) ease;
+}
+
+.woocommerce-input-wrapper .searchable-select-wrapper .searchable-select-wrapper .searchable-select-trigger {
+    border: none !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    transition: all var(--tiempo--transiciones) ease !important;
+    font-size: var(--tamaño--secundario, .8rem) !important;
+    color: var(--color--text, #000) !important;
+}
+
+.islabeya-checkout-step__body textarea {
+    height: auto;
+    min-height: 90px;
+    padding: 12px 16px;
+}
+
+.islabeya-checkout-step__body .input-text:focus,
+.islabeya-checkout-step__body select:focus,
+.islabeya-checkout-step__body textarea:focus {
+    border-color: var(--color--primary, #15ad3c);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(21, 173, 60, 0.12);
+}
+
+.islabeya-checkout-step__body .form-row.woocommerce-invalid .input-text,
+.islabeya-checkout-step__body .form-row.woocommerce-invalid select {
+    border-color: var(--color--error, #e74c3c);
+
+    .iti {
+        width: 100%;
+    }
+}
+
+.islabeya-checkout-step__body .form-row .woocommerce-input-wrapper {
+    width: 100%;
+    gap: 10px;
+}
+
+
+
+/* ---------- Botones Continuar / Volver ---------- */
+.islabeya-checkout-step__actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid #eee;
+}
+
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit, 
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button, 
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button, 
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button, 
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit,
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button, 
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button, 
+:where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button,
+.islabeya-checkout-step--payment #place_order {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 12px 24px !important;
+    border: none !important;
+    border-radius: var(--borde--principal, 5px) !important;
+    font-family: var(--fuente--principal, 'Mi-Poppins') !important;
+    font-size: var(--tamaño--secundario, .8rem) !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all var(--tiempo--transiciones, .3s) ease;
+    text-decoration: none;
+    background: var(--color--primary);
+    color: white;
+    width: 100%;
+}
+
+#add_payment_method #payment, .woocommerce-cart #payment, .woocommerce-checkout #payment {
+    background: transparent !important;
+}
+
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button:hover {
+    background: var(--color--hover_primary) !important;
+    color: white !important;
+}
+
+.islabeya-checkout-btn--next {
+    background: var(--color--primary, #15ad3c);
+    color: #fff;
+}
+
+.islabeya-checkout-btn--next:hover {
+    background: var(--color--hover_primary, #15AD3CE8);
+}
+
+.islabeya-checkout-btn--back {
+    background: #fff;
+    color: var(--color--text, #000);
+    border: 1px solid #ddd;
+}
+
+.islabeya-checkout-btn--back:hover {
+    border-color: var(--color--primary, #15ad3c);
+    color: var(--color--primary, #15ad3c);
+}
+
+.islabeya-checkout-btn__arrow {
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: transform var(--tiempo--transiciones, .3s) ease;
+}
+
+.islabeya-checkout-btn--next:hover .islabeya-checkout-btn__arrow {
+    transform: translateX(3px);
+}
+
+.islabeya-checkout-btn--back:hover .islabeya-checkout-btn__arrow--left {
+    transform: translateX(-3px);
+}
+
+#add_payment_method #payment div.form-row, 
+.woocommerce-cart #payment div.form-row, 
+.woocommerce-checkout #payment div.form-row {
+    padding: 0 !important;
+}
+
+/* Desplegables */
+
+.select2-container--open .select2-dropdown--below {
+    margin: 0px !important;
+    position: absolute !important;
+    top: calc(100% + 4px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+    z-index: 9999 !important;
+    overflow: hidden !important;
+    
+    .select2-search--dropdown {
+        padding: 10px !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+
+        .select2-search__field {
+            width: 100% !important;
+            padding: 8px 12px !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 6px !important;
+            font-size: 14px !important;
+            font-family: inherit !important;
+            outline: none !important;
+            transition: all 0.2s ease !important;
+            box-sizing: border-box !important; 
+
+            .select2-results__option--highlighted {
+                background-color: var(--color--primary) !important;
+                color: white !important;
+            }
+        }
+    }
+}
+
+.select2-results__option[aria-selected], .select2-results__option[data-selected] {
+    padding: 10px 16px !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease !important;
+    font-size: 14px !important;
+    color: #374151 !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[data-selected] {
+    background: var(--color--hover_tertiary) !important;
+}
+
+.select2-container--default .select2-results__option[data-selected=true] {
+    background-color: var(--color--primary) !important;
+    color: white !important;
+}
+
+/* ---------- Columna derecha: Resumen del pedido ---------- */
+.islabeya-checkout-3pasos__col-resumen,
+.islabeya-checkout-3pasos__col-form {
+    position: sticky;
+    top: 20px;
+    max-width: 500px;
+    justify-self: center;
+}
+
+.islabeya-checkout-resumen__inner {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-contenedores, 10px);
+    padding: 20px;
+    box-shadow: var(--shadow--natural, 0 2px 10px rgba(0, 0, 0, 0.1));
+}
+
+.islabeya-checkout-resumen__titulo {
+    margin: 0 0 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color--text, #000);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--color--primary, #15ad3c);
+}
+
+/* ---------- Tabla de productos ---------- */
+.islabeya-review-table__productos {
+    margin-bottom: 16px;
+}
+
+.islabeya-review-table__item {
+    display: grid;
+    grid-template-columns: 58px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.islabeya-review-table__item:last-child {
+    border-bottom: none;
+}
+
+.islabeya-review-table__thumb {
+    position: relative;
+    width: 58px;
+    height: 58px;
+    border-radius: 8px;
+    background: var(--color--secondary, #f5f5f5);
+    flex-shrink: 0;
+}
+
+.islabeya-review-table__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.islabeya-review-table__qty {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color--primary, #15ad3c);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 50px;
+    box-sizing: border-box;
+}
+
+.islabeya-review-table__name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color--text, #000);
+    line-height: 1.35;
+}
+
+.islabeya-review-table__meta {
+    font-size: 0.75rem;
+    color: var(--color--text_secondary, #6b7280);
+    margin-top: 2px;
+}
+
+.islabeya-review-table__price {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color--tertiary, #004D35);
+    white-space: nowrap;
+}
+
+/* ---------- Totales ---------- */
+.islabeya-review-table__totales {
+    border-top: 2px solid #eee;
+    padding-top: 12px;
+}
+
+.islabeya-review-table__fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    font-size: 0.88rem;
+    color: var(--color--text, #000);
+}
+
+.islabeya-review-table__fila--total {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color--tertiary, #004D35);
+    border-top: 1px solid #eee;
+    margin-top: 6px;
+    padding-top: 12px;
+}
+
+.islabeya-review-table__label {
+    font-weight: 500;
+}
+
+.islabeya-review-table__valor {
+    font-weight: 600;
+}
+
+/* ---------- Cupón (columna derecha) ---------- */
+.islabeya-checkout-coupon {
+    border-top: 1px solid #eee;
+    margin-top: 12px;
+    padding-top: 14px;
+}
+
+.islabeya-checkout-coupon__titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color--text, #000);
+    margin-bottom: 10px;
+}
+
+.islabeya-checkout-coupon__row {
+    display: flex;
+    gap: 8px;
+}
+
+.islabeya-checkout-coupon__row .input-text {
+    flex: 1;
+    min-height: 42px;
+    padding: 8px 10px;
+    border: 1px solid #bfbfbf;
+    border-radius: var(--borde--principal, 5px);
+    font-family: var(--fuente--principal, 'Mi-Poppins');
+    font-size: 0.85rem;
+    box-sizing: border-box;
+}
+
+.islabeya-checkout-coupon__row .input-text:focus {
+    border-color: var(--color--primary, #15ad3c);
+    outline: none;
+}
+
+.islabeya-coupon-btn {
+    background: var(--color--primary, #15ad3c);
+    color: #fff;
+    border: none;
+    border-radius: var(--borde--principal, 5px);
+    padding: 0 16px;
+    font-family: var(--fuente--principal, 'Mi-Poppins');
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--tiempo--transiciones, .3s) ease;
+}
+
+.islabeya-coupon-btn:hover {
+    background: var(--color--hover_primary, #15AD3CE8);
+}
+
+.islabeya-checkout-coupon__mensaje {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    min-height: 18px;
+}
+
+.islabeya-checkout-coupon__mensaje.is-success {
+    color: var(--color--primary, #15ad3c);
+}
+
+.islabeya-checkout-coupon__mensaje.is-error {
+    color: var(--color--error, #e74c3c);
+}
+
+.islabeya-checkout-coupon__applied {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+}
+
+.islabeya-checkout-coupon__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 10px;
+    background: rgba(21, 173, 60, 0.08);
+    border: 1px solid rgba(21, 173, 60, 0.2);
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 0.82rem;
+}
+
+.islabeya-checkout-coupon__code {
+    font-weight: 600;
+    color: var(--color--tertiary, #004D35);
+    text-transform: uppercase;
+}
+
+.islabeya-checkout-coupon__remove {
+    color: #e74c3c;
+    font-size: 1.1rem;
+    text-decoration: none;
+    line-height: 1;
+}
+
+/* ---------- Resumen de envío (columna derecha) ---------- */
+.islabeya-resumen-envio {
+    border-top: 1px solid #eee;
+    margin-top: 12px;
+    padding-top: 14px;
+}
+
+.islabeya-resumen-envio__titulo {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color--text, #000);
+    margin-bottom: 10px;
+}
+
+.islabeya-resumen-envio__bloque {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 0.82rem;
+    flex-wrap: wrap;
+}
+
+.islabeya-resumen-envio__bloque--gratuito {
+    background: #f0f9f4;
+    border-left: 3px solid var(--color--primary, #15ad3c);
+}
+
+.islabeya-resumen-envio__bloque--recogida {
+    background: #fff5f0;
+    border-left: 3px solid #ff6b35;
+}
+
+.islabeya-resumen-envio__subtitulo {
+    width: 100%;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.islabeya-resumen-envio__bloque--gratuito .islabeya-resumen-envio__subtitulo {
+    color: var(--color--primary, #15ad3c);
+}
+
+.islabeya-resumen-envio__bloque--recogida .islabeya-resumen-envio__subtitulo {
+    color: #ff6b35;
+}
+
+.islabeya-resumen-envio__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+    padding: 2px 0;
+    font-size: 0.78rem;
+    color: var(--color--text_secondary, #6b7280);
+}
+
+.islabeya-resumen-envio__tag {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+    padding: 2px 8px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.islabeya-resumen-envio__tiendas {
+    margin-top: 8px;
+    width: 100%;
+}
+
+.islabeya-resumen-envio__tienda {
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #ffd1b9;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 0.75rem;
+}
+
+.islabeya-resumen-envio__tienda-nombre {
+    font-weight: 600;
+    color: #ff6b35;
+    margin-bottom: 4px;
+}
+
+.islabeya-resumen-envio__tienda-direccion {
+    color: var(--color--text_secondary, #6b7280);
+    line-height: 1.5;
+    font-size: 0.72rem;
+}
+
+.islabeya-resumen-envio__tienda-contacto {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--color--text_secondary, #6b7280);
+    font-size: 0.72rem;
+}
+
+/* ---------- Link "Seguir comprando" ---------- */
+.islabeya-checkout-resumen__seguir-comprando {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 14px;
+    width: 100%;
+    justify-content: center;
+    border-top: 1px solid #eee;
+    font-family: var(--fuente--principal, 'Mi-Poppins');
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color--text_secondary, #6b7280);
+    text-decoration: none;
+    transition: color var(--tiempo--transiciones, .3s) ease;
+}
+
+.islabeya-checkout-resumen__seguir-comprando:hover {
+    color: var(--color--primary, #15ad3c);
+}
+
+.islabeya-checkout-resumen__seguir-comprando-arrow {
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: transform var(--tiempo--transiciones, .3s) ease;
+}
+
+.islabeya-checkout-resumen__seguir-comprando:hover .islabeya-checkout-resumen__seguir-comprando-arrow {
+    transform: translateX(-3px);
+}
+
+/* ---------- Payment method: mini-cards ---------- */
+#add_payment_method #payment ul.payment_methods li, .woocommerce-cart #payment ul.payment_methods li, .woocommerce-checkout #payment ul.payment_methods li {
+    line-height: 1;
+    display: flex;
+    text-align: left;
+    margin: 0;
+    font-weight: 400;
+    flex-wrap: wrap;
+    background: white !important;
+    margin-bottom: 10px !important;
+}
+
+.islabeya-checkout-step--payment .wc_payment_method {
+    padding: 10px 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #fff;
+    transition: border-color var(--tiempo--transiciones, .3s) ease, box-shadow var(--tiempo--transiciones, .3s) ease;
+    cursor: pointer;
+}
+
+.islabeya-checkout-step--payment .wc_payment_method:has(input:checked) {
+    border-color: var(--color--primary, #15ad3c);
+    background: rgba(21, 173, 60, 0.03);
+    box-shadow: 0 0 0 2px rgba(21, 173, 60, 0.15);
+}
+
+.islabeya-checkout-step--payment .wc_payment_method input[type="radio"] {
+    margin-right: 8px;
+    accent-color: var(--color--primary, #15ad3c);
+}
+
+.islabeya-checkout-step--payment .wc_payment_method label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 85%;
+}
+
+.islabeya-checkout-step--payment .wc_payment_method label img {
+    max-height: 24px;
+    width: auto;
+}
+
+/* ---------- blockUI / WooCommerce preloader global override ---------- */
+.blockUI.blockOverlay {
+    background: rgba(255, 255, 255, 0.8) !important;
+    opacity: 1 !important;
+}
+
+/* Spinner sobre contenedor blanco (mismo diseño que botón add-to-cart, en verde marca) */
+.blockUI.blockOverlay::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    margin: -40px 0 0 -40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.blockUI.blockOverlay::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+    border: 1px solid transparent;
+    border-top: 1px solid var(--color--primary, #15ad3c);
+    border-right: 1px solid var(--color--primary, #15ad3c);
+    border-radius: 50%;
+    animation: islabeya-spin 0.8s linear infinite;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+/* Fallback cuando blockUI usa un blockMsg (mensaje explícito) */
+.blockUI.blockMsg {
+    background: #fff !important;
+    border: none !important;
+    border-radius: 50% !important;
+    padding: 0px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.blockUI.blockMsg::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid transparent;
+    border-top: 1px solid var(--color--primary, #15ad3c);
+    border-right: 1px solid var(--color--primary, #15ad3c); 
+    border-radius: 50%;
+    animation: islabeya-spin 0.8s linear infinite;
+    box-sizing: border-box;
+}
+
+/* Keyframes para el spinner (independiente de card-productos.css) */
+@keyframes islabeya-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.islabeya-checkout-step--payment .payment_box {
+    margin-top: 10px;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--color--text_secondary, #6b7280);
+}
+
+/* Botón Realizar pedido */
+.islabeya-checkout-step--payment #place_order {
+    line-height: 2;
+}
+
+.islabeya-checkout-step--payment #place_order:hover {
+    opacity: 0.9;
+}
+
+/* ---------- Precio dentro del botón "Pagar" ---------- */
+.islabeya-checkout-step--payment #place_order .woocommerce-Price-amount {
+    font-size: 1.05em;
+    font-weight: 600;
+    color: #ffd700;
+    letter-spacing: 0.3px;
+}
+
+.islabeya-checkout-step--payment #place_order .woocommerce-Price-currencySymbol {
+    font-weight: 600;
+}
+
+/* ---------- Validación de provincia/municipio (searchable select) ---------- */
+.islabeya-checkout-step .searchable-select-trigger.isla-invalid {
+    border-color: var(--color--error, #e74c3c) !important;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.12) !important;
+}
+
+.islabeya-checkout-step .isla-error-msg {
+    color: var(--color--error, #e74c3c);
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 4px;
+    line-height: 1.3;
+}
+
+.islabeya-checkout-step .form-row.woocommerce-invalid.isla-invalid .input-text,
+.islabeya-checkout-step .form-row.woocommerce-invalid.isla-invalid select {
+    border-color: var(--color--error, #e74c3c);
+}
+
+/* ---------- Estilo del botón "Pagar" con total ---------- */
+.islabeya-checkout-step--payment #place_order {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem !important;
+}
+
+.islabeya-checkout-step--payment #place_order .woocommerce-Price-amount {
+    color: #ffd700;
+    font-size: 1.1em;
+}
+
+/* Términos y condiciones */
+.islabeya-checkout-step--payment .woocommerce-terms-and-conditions-wrapper {
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+}
+
+.islabeya-checkout-step--payment .woocommerce-terms-and-conditions-wrapper a {
+    color: var(--color--primary, #15ad3c);
+}
+
+/* ---------- Avisos / Notices WooCommerce ---------- */
+.islabeya-checkout-3pasos .woocommerce-error,
+.islabeya-checkout-3pasos .woocommerce-info,
+.islabeya-checkout-3pasos .woocommerce-message {
+    width: 100% !important;
+    margin: 0 0 16px !important;
+    box-sizing: border-box;
+}
+
+/* ---------- Checkout: ocultar elementos originales de WooCommerce ---------- */
+.islabeya-checkout-step__body .woocommerce-billing-fields > h3,
+.islabeya-checkout-step__body .woocommerce-shipping-fields > h3,
+.islabeya-checkout-step__body .woocommerce-additional-fields,
+.islabeya-checkout-step__body #ship-to-different-address,
+.islabeya-ship-to-different,
+#ship-to-different-address.islabeya-ship-to-different {
+    display: none !important;
+}
+
+.woocommerce form .form-row .input-text, .woocommerce form .form-row select {
+    border: none !important;
+    border-radius: var(--border-contenedores) !important;
+    height: 40px !important;
+    padding-left: 14px;
+    color: var(--color--text_secondary) !important;
+}
+.select2-selection {
+    padding: 16px !important;
+    border: none !important;
+    .select2-selection__rendered {
+        padding: 0 !important;
+        line-height: 1 !important;
+    }
+}
+
+.iti--allow-dropdown {
+    width: 100% !important;
+}
+
+/* Teléfono con país bloqueado (envío: solo Cuba) */
+.iti--locked .iti__country-container {
+    cursor: not-allowed;
+    opacity: 0.85;
+}
+.iti--locked .iti__selected-dial-code {
+    pointer-events: none;
+}
+.iti--locked .iti__arrow {
+    display: none !important;
+}
+
+.woocommerce form .form-row label {
+    line-height: 1 !important;
+}
+
+.woocommerce-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .radio {
+        margin: 0px;
+    }
+}
+
+/* ---------- Resumen de envío por producto (detalle rico) ---------- */
+.islabeya-resumen-envio--detallado .islabeya-resumen-envio__producto {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.islabeya-resumen-envio__producto-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.islabeya-resumen-envio__producto-nombre {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color--text, #000);
+    line-height: 1.35;
+}
+
+.islabeya-resumen-envio__producto-qty {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color--text_secondary, #6b7280);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.islabeya-resumen-envio__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.islabeya-resumen-envio__badge--envio {
+    background: rgba(21, 173, 60, 0.1);
+    color: var(--color--tertiary, #004D35);
+    border: 1px solid rgba(21, 173, 60, 0.25);
+}
+
+.islabeya-resumen-envio__badge--recogida {
+    background: rgba(255, 107, 53, 0.1);
+    color: #b84a2c;
+    border: 1px solid rgba(255, 107, 53, 0.25);
+}
+
+/* Detalle rico de envío */
+.islabeya-envio-detalle__bloque {
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+.islabeya-envio-detalle__bloque--verde {
+    background: #f0f9f4;
+    border-left: 3px solid var(--color--primary, #15ad3c);
+    color: var(--color--text_secondary, #2C4A3E);
+}
+
+.islabeya-envio-detalle__bloque--naranja {
+    background: #fff5f0;
+    border-left: 3px solid #ff6b35;
+    color: #555;
+}
+
+.islabeya-envio-detalle__bloque--morado {
+    background: #f5f0ff;
+    border-left: 3px solid #9b59b6;
+    color: #6c3483;
+}
+
+.islabeya-envio-detalle__titulo {
+    display: block;
+    font-weight: 600;
+    color: var(--color--tertiary, #004D35);
+    margin-bottom: 4px;
+}
+
+.islabeya-envio-detalle__bloque--naranja .islabeya-envio-detalle__titulo {
+    color: #b84a2c;
+}
+
+.islabeya-envio-detalle__linea {
+    margin: 3px 0;
+    font-size: 0.74rem;
+}
+
+.islabeya-envio-detalle__fecha strong,
+.islabeya-envio-detalle__linea strong {
+    font-weight: 600;
+}
+
+.islabeya-envio-detalle__exito {
+    color: var(--color--primary, #15ad3c);
+    font-style: italic;
+}
+
+.islabeya-envio-detalle__exito span {
+    font-weight: 600;
+    font-style: normal;
+}
+
+.islabeya-envio-detalle__aviso {
+    color: #b84a2c;
+    font-weight: 500;
+}
+
+/* ---------- Responsive: Móvil ---------- */
+@media (max-width: 768px) {
+    .islabeya-checkout-3pasos__layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 12px;
+    }
+
+    .islabeya-checkout-3pasos__col-form {
+        position: relative;
+    }
+
+    .islabeya-checkout-progress {
+        gap: 4px;
+        justify-content: center;
+    }
+
+    .islabeya-checkout-progress__item {
+        font-size: 0.72rem;
+        padding: 6px 10px;
+    }
+
+    .islabeya-checkout-progress__num {
+        width: 20px;
+        height: 20px;
+        font-size: 0.68rem;
+    }
+
+    .islabeya-checkout-progress__line {
+        flex: 0 0 12px;
+    }
+
+    .islabeya-checkout-step__actions {
+        flex-direction: column-reverse;
+    }
+
+    .islabeya-checkout-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .islabeya-checkout-resumen__inner {
+        padding: 14px;
+    }
+
+    .islabeya-review-table__item {
+        grid-template-columns: 48px 1fr auto;
+        gap: 8px;
+    }
+
+    .islabeya-review-table__thumb {
+        width: 48px;
+        height: 48px;
+    }
+}

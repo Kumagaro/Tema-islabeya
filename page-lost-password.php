@@ -17,9 +17,11 @@ get_header( 'fullheight' );
 
         <div class="islabeya-login-container">
             <h2><?php esc_html_e( '¿Perdiste tu contraseña?', 'woocommerce' ); ?></h2>
-            <p class="registro-intro"><?php esc_html_e( 'Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.', 'woocommerce' ); ?></p>
+            <p class="registro-intro" id="lost-password-intro"><?php esc_html_e( 'Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.', 'woocommerce' ); ?></p>
 
-            <?php wc_print_notices(); ?>
+            <div class="auth-notices" role="alert" aria-live="assertive">
+                <?php wc_print_notices(); ?>
+            </div>
 
             <!-- Agregamos la clase 'woocommerce-form-login' para que herede los estilos -->
             <form method="post" class="woocommerce-form woocommerce-form-login woocommerce-form-lost-password isla-form">
@@ -27,9 +29,10 @@ get_header( 'fullheight' );
                     <label for="user_login">
                         <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/icons/Letter.svg' ); ?>" alt="Email">
                     </label>
-                    <input type="text" class="input-text" name="user_login" id="user_login" 
+                        <input type="text" class="input-text" name="user_login" id="user_login"
                            placeholder="<?php esc_attr_e( 'Correo electrónico o nombre de usuario', 'woocommerce' ); ?>"
-                           data-required="true" />
+                              autocomplete="username" required aria-required="true"
+                              data-required="true" aria-describedby="lost-password-intro" />
                 </p>
 
                 <p class="form-row">

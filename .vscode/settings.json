@@ -4,5 +4,12 @@
     ],
     "intelephense.environment.includePaths": [
         "${workspaceFolder}/.vscode/php-stubs/wordpress-stubs"
-    ]
+    ],
+    "chat.tools.terminal.autoApprove": {
+        "&": true,
+        "/^node -e 'const samples = \\[\"Abcdef1!\", \"abcdefgh1!\", \"ABCDEFG1!\", \"Abcdefgh!\", \"Abcdefg1\"\\]; for \\(const value of samples\\) \\{ const valid = Array\\.from\\(value\\)\\.length >= 8 && /\\\\p\\{Lu\\}/u\\.test\\(value\\) && /\\\\p\\{Ll\\}/u\\.test\\(value\\) && /\\\\p\\{N\\}/u\\.test\\(value\\) && /\\[\\^\\\\p\\{L\\}\\\\p\\{N\\}\\\\s\\]/u\\.test\\(value\\); console\\.log\\(\\(valid \\? \"PASS \" : \"REJECT \"\\) \\+ value\\); \\}'$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
 }

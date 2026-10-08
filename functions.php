@@ -247,6 +247,47 @@ function forzar_plantilla_my_account( $template ) {
     return $template;
 }
 
+/**
+ * Return password policy violations for authentication forms.
+ *
+ * @param string $password Password to validate.
+ * @return string[]
+ */
+function islabeya_password_policy_errors( $password ) {
+    if ( '' === $password ) {
+        return array( __( 'Escribe una contraseña.', 'woocommerce' ) );
+    }
+
+    $rules = array(
+        'length'    => array( preg_match( '/^.{8,}$/us', $password ), __( 'La contraseña debe tener al menos 8 caracteres.', 'woocommerce' ) ),
+        'uppercase' => array( preg_match( '/\p{Lu}/u', $password ), __( 'La contraseña debe incluir una letra mayúscula.', 'woocommerce' ) ),
+        'lowercase' => array( preg_match( '/\p{Ll}/u', $password ), __( 'La contraseña debe incluir una letra minúscula.', 'woocommerce' ) ),
+        'number'    => array( preg_match( '/\p{N}/u', $password ), __( 'La contraseña debe incluir un número.', 'woocommerce' ) ),
+        'symbol'    => array( preg_match( '/[^\p{L}\p{N}\s]/u', $password ), __( 'La contraseña debe incluir un símbolo, por ejemplo ! o #.', 'woocommerce' ) ),
+    );
+
+    $errors = array();
+    foreach ( $rules as $rule ) {
+        if ( 1 !== $rule[0] ) {
+            $errors[] = $rule[1];
+        }
+    }
+
+    return $errors;
+}
+
+/** Enforce the same password policy when WooCommerce resets a password. */
+add_action( 'validate_password_reset', 'islabeya_validate_password_reset_policy', 10, 2 );
+function islabeya_validate_password_reset_policy( $errors, $user ) {
+    if ( ! ( $errors instanceof WP_Error ) || ! isset( $_POST['password_1'] ) || ! is_string( $_POST['password_1'] ) ) {
+        return;
+    }
+
+    foreach ( islabeya_password_policy_errors( $_POST['password_1'] ) as $index => $message ) {
+        $errors->add( 'islabeya_password_policy_' . $index, $message );
+    }
+}
+
 
 
 // ============================================
@@ -1004,7 +1045,12 @@ function add_assets() {
         wp_enqueue_style( 'intl-tel-input', 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css', array(), '17.0.8' );
     }
     
-// ============================================
+    // ============================================
+    // SCRIPTS GLOBALES
+    // ============================================ 
+    wp_enqueue_script( 'temaislabeya-script-acordeon-menu-movil', get_template_directory_uri() . '/assets/js/acordeon-menu-movil.js', array(), false, true );
+    
+    // ============================================
     // SCRIPTS CONDICIONALES
     // ============================================
 
@@ -1012,8 +1058,7 @@ function add_assets() {
     if ( is_front_page() || is_home() ) {
         wp_enqueue_script( 'temaislabeya-script-carrusel', get_template_directory_uri() . '/assets/js/carrusel.js', array(), false, true );
         wp_enqueue_script( 'temaislabeya-script-control-video', get_template_directory_uri() . '/assets/js/control-video.js', array(), false, true );
-        wp_enqueue_script( 'temaislabeya-script-card-productos', get_template_directory_uri() . '/assets/js/card-productos.js', array(), false, true );
-        wp_enqueue_script( 'temaislabeya-script-acordeon-menu-movil', get_template_directory_uri() . '/assets/js/acordeon-menu-movil.js', array(), false, true );
+        wp_enqueue_script( 'temaislabeya-script-card-productos', get_template_directory_uri() . '/assets/js/card-productos.js', array(), false, true ); 
     }
     
     // Scripts de página de producto

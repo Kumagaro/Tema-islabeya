@@ -328,6 +328,84 @@ function islabeya_tg_get_dokan_vendors( $order ) {
     return $vendors;
 }
 
+/**
+ * Format an order address as escaped, labeled Telegram lines.
+ *
+ * @param WC_Order $order Order to read.
+ * @param string   $type  Address type: billing or shipping.
+ * @return string
+ */
+function islabeya_tg_format_order_address( $order, $type ) {
+    $prefix = 'shipping' === $type ? 'shipping' : 'billing';
+    $get    = static function( $field ) use ( $order, $prefix ) {
+        $method = 'get_' . $prefix . '_' . $field;
+        return method_exists( $order, $method ) ? $order->{$method}() : '';
+    };
+
+    $name = trim( $get( 'first_name' ) . ' ' . $get( 'last_name' ) );
+    $country_code = $get( 'country' );
+    $country_name = $country_code;
+    $state_name   = $get( 'state' );
+
+    if ( function_exists( 'WC' ) && WC() && WC()->countries ) {
+        $countries = WC()->countries->get_countries();
+        if ( isset( $countries[ $country_code ] ) ) {
+            $country_name = $countries[ $country_code ];
+        }
+
+        $states = WC()->countries->get_states( $country_code );
+        if ( is_array( $states ) && isset( $states[ $state_name ] ) ) {
+            $state_name = $states[ $state_name ];
+        }
+    }
+
+    $fields = array(
+        'Nombre'         => $name,
+        'Empresa'        => $get( 'company' ),
+        'Dirección'      => $get( 'address_1' ),
+        'Apto./interior' => $get( 'address_2' ),
+        'Municipio'      => $get( 'city' ),
+        'Provincia'      => $state_name,
+        'Código postal'  => $get( 'postcode' ),
+        'País'           => $country_name,
+    );
+
+    $phone_method = 'get_' . $prefix . '_phone';
+    if ( method_exists( $order, $phone_method ) ) {
+        $fields['Teléfono'] = $order->{$phone_method}();
+    } elseif ( 'shipping' === $prefix ) {
+        $fields['Teléfono'] = $order->get_billing_phone();
+    } else {
+        $fields['Teléfono'] = $order->get_billing_phone();
+    }
+
+    if ( 'billing' === $prefix ) {
+        $fields['Correo'] = $order->get_billing_email();
+    } else {
+        $shipping_email = $order->get_meta( '_shipping_email' );
+        if ( ! $shipping_email ) {
+            $shipping_email = $order->get_meta( 'shipping_email' );
+        }
+        $fields['Correo'] = $shipping_email;
+    }
+
+    $lines = array();
+    foreach ( $fields as $label => $value ) {
+        if ( ! is_scalar( $value ) ) {
+            continue;
+        }
+
+        $value = trim( preg_replace( '/\s+/u', ' ', (string) $value ) );
+        if ( '' === $value ) {
+            continue;
+        }
+
+        $lines[] = '• *' . islabeya_tg_escape( $label ) . ':* ' . islabeya_tg_escape( $value );
+    }
+
+    return implode( "\n", $lines );
+}
+
 function islabeya_tg_build_message( $order ) {
 
     $order_id     = $order->get_id();
@@ -338,8 +416,10 @@ function islabeya_tg_build_message( $order ) {
     $nombre       = trim( $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() );
     $telefono     = $order->get_billing_phone();
     $email        = $order->get_billing_email();
-    $dir_factura  = $order->get_formatted_billing_address();
-    $dir_envio    = $order->get_formatted_shipping_address();
+    $dir_factura  = islabeya_tg_format_order_address( $order, 'billing' );
+    $dir_envio    = islabeya_tg_format_order_address( $order, 'shipping' );
+    $direccion_factura_original = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( $order->get_formatted_billing_address() ) ) );
+    $direccion_envio_original   = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( $order->get_formatted_shipping_address() ) ) );
     $metodo_pago  = $order->get_payment_method_title();
     $metodo_envio = $order->get_shipping_method();
     $notas        = $order->get_customer_note();
@@ -364,10 +444,10 @@ function islabeya_tg_build_message( $order ) {
     $msg .= "\n";
 
     if ( $dir_factura ) {
-        $msg .= "🏠 *Facturación:*\n" . islabeya_tg_escape( strip_tags( $dir_factura ) ) . "\n\n";
+        $msg .= "🏠 *Facturación:*\n" . $dir_factura . "\n\n";
     }
-    if ( $dir_envio && $dir_envio !== $dir_factura ) {
-        $msg .= "🚚 *Envío:*\n" . islabeya_tg_escape( strip_tags( $dir_envio ) ) . "\n\n";
+    if ( $dir_envio && $direccion_envio_original !== $direccion_factura_original ) {
+        $msg .= "🚚 *Envío:*\n" . $dir_envio . "\n\n";
     }
 
     $msg .= "📦 *Productos:*\n";
@@ -376,6 +456,16 @@ function islabeya_tg_build_message( $order ) {
         $prod = $item->get_name();
         $sub  = $item->get_subtotal();
         $msg .= "• {$cant}x " . islabeya_tg_escape( $prod ) . " — " . $price( $sub ) . "\n";
+
+        if ( method_exists( $item, 'get_variation_id' ) && $item->get_variation_id() && method_exists( $item, 'get_formatted_meta_data' ) ) {
+            foreach ( $item->get_formatted_meta_data() as $meta ) {
+                $label = isset( $meta->display_key ) && is_scalar( $meta->display_key ) ? trim( wp_strip_all_tags( (string) $meta->display_key ) ) : '';
+                $value = isset( $meta->display_value ) && is_scalar( $meta->display_value ) ? trim( wp_strip_all_tags( (string) $meta->display_value ) ) : '';
+                if ( '' !== $label && '' !== $value ) {
+                    $msg .= "    " . islabeya_tg_escape( $label ) . ': ' . islabeya_tg_escape( $value ) . "\n";
+                }
+            }
+        }
     }
     $msg .= "\n";
 

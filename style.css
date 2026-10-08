@@ -4,7 +4,7 @@ Theme URI:
 Author: @Kumagaro Javier Sánchez Zerquera
 Author URI: 
 Description: Tema IslaBeya es un tema desarrollado solamente para el negocio IslaBeya con funciones y elementos específicos del negocio. No estará diseñado para manejar plugins adicionales de maquetación de contenido, digase Elementor o Gutemberg, pueden ser utilizados pero no se asegura compatibilidades ni funcionamiento óptimo del tema en combinación con estos maquetadores. Tema IslaBeya es un tema clásico destinado a ser usado con WooCommerce, Dokan y MONIE para su correcto funcionamiento.
-Version: 1.0.8.1
+Version: 1.0.8.5 Github
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -12,8 +12,15 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: temaislabeya
 
+✨ VERSIÓN 1.0.8.5 - Novedades:
+-Arreglado el fallo del formulario de restablacer contraseña
+-Agregada validacion con js en el frotend para los formularios del flujo de autenticación.
+-Agregado en los mensajes de telegram las variaciones de los productos
+-Tienda de SD Express sin menciones de CUBA
+
 ✨ VERSIÓN 1.0.8.2 - Novedades:
--Página de SD Express sin menciones a Cuba.
+-Arreglado error de interfaz en el cual las cards de productos se desbordan de la pantalla.
+-Arreglado fallo de menu en movil.
 
 ✨ VERSIÓN 1.0.8.1 - Novedades:
 -Cambiado rango de tiempo de entraga de productos a 60-90 días. Antes 40 dias.

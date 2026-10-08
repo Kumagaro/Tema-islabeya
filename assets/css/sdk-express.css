@@ -706,7 +706,7 @@ main {
 
 .sd-express-why-grid {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(5, 1fr);
 	gap: 24px;
 	margin-top: 32px
 }
@@ -1145,8 +1145,8 @@ main {
 	.sd-express-header {
 		padding: 10px 20px;
 	}
-    .sd-express-product-item { 
-        width: 48%;
+    .sd-express-product-item {  
+        flex: 1 1 calc(50% - 10px);
     }
 	.sd-express-hero h1 {
         font-size: 32px;
@@ -1163,9 +1163,9 @@ main {
 	.sd-express-topbar { 
         gap: 10px;
     }
-	.producto-moto {
+	/*.producto-moto {
 		width: 100%;
-	}
+	}*/
 	.sd-express-footer-grid {
         grid-template-columns: 1fr;
     }

@@ -15,7 +15,7 @@ get_header();
             <a href="<?php echo esc_url( get_term_link( 'kits-solares', 'product_cat' ) ); ?>" class="slider">
                 <img src="<?php echo esc_url( get_parent_theme_file_uri( '/assets/img/carrusel-hero/Banner 1.webp' ) ); ?>" alt="Energía solar para ganar independencia, hasta 25% de descuento">
             </a>
-            <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'cemento-chagres-425-kg', OBJECT, 'product' ) ) ); ?>" class="slider">
+            <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'cemento-chagres-425-kg', OBJECT, 'product' ) ) ); ?>" class="slider oculto">
                 <img src="<?php echo esc_url( get_parent_theme_file_uri( '/assets/img/carrusel-hero/Banner 2.webp' ) ); ?>" alt="Materiales de construcción de calidad para tus proyectos">
             </a>
             <a href="<?php echo esc_url( get_term_link( 'electrodomesticos', 'product_cat' ) ); ?>" class="slider">
@@ -47,7 +47,7 @@ get_header();
         <a href="<?php echo esc_url( get_term_link( 'electrodomesticos', 'product_cat' ) ); ?>" class="slider-movil">
             <img <?php echo islabeya_banner_movil_srcset('carrusel-hero/Banner movil/Banner Movil 1.webp', true); ?> alt="Electrodomésticos que resuelven tu día a día">
         </a>
-        <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'cemento-chagres-425-kg', OBJECT, 'product' ) ) ); ?>" class="slider-movil">
+        <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'cemento-chagres-425-kg', OBJECT, 'product' ) ) ); ?>" class="slider-movil oculto">
             <img <?php echo islabeya_banner_movil_srcset('carrusel-hero/Banner movil/BaNNer movil 2.webp'); ?> alt="Materiales de contruccion de calidad">
         </a>
         <a href="<?php echo esc_url( get_term_link( 'kits-solares', 'product_cat' ) ); ?>" class="slider-movil">

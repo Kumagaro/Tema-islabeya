@@ -41,6 +41,13 @@
 }
 
 /* Formularios (login y registro) */
+
+.password-requirements {
+    font-size: 12px;
+    opacity: 0.8;
+    align-self: self-start;
+}
+
 .woocommerce-form-login,
 .woocommerce-form-register {
     display: flex;

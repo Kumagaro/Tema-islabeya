@@ -1,7 +1,7 @@
 .producto-moto {
     display: flex;
     box-sizing: border-box;
-    width: 210px;
+    width: 100%;
     flex-direction: column;
     background-color: white;
     border-radius: 10px;

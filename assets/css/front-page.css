@@ -37,6 +37,10 @@ Carrusel del Hero
     height: 100%;
 }
 
+.slider.oculto {
+    display: none !important;
+}
+
 .slider img {
     width: 100%;
     height: 100%;
@@ -133,6 +137,9 @@ Carrusel del Hero
         scroll-snap-align: start;
         flex: 0 0 24rem;
         height: fit-content;
+    }
+    .slider-movil.oculto {
+        display: none !important;
     }
     .slider-movil::scroll-marker {
         content: '';
@@ -453,7 +460,7 @@ Par de mini banner 1
 Video
 ==================================================================================================*/
 .section-video {
-    display: flex;
+    display: none;
     width: var(--tamano-contenedores);
     margin-bottom: 40px;
     background-image: url(../img/Gráfica\ de\ Apoyo\ 2.webp);

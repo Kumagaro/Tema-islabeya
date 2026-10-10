@@ -144,10 +144,6 @@
                 alt="Logo IslaBeya, Identificador Visual Islabeya" />
             </a> 
             <div class="header-rigt">
-                <div class="badge-envio-gratis-header">
-                    <h2 class="badge-header-p1 font-bold">ENVIO GRATIS</h2>
-                    <p class="badge-header-p2 font-regular">PARA TODA <strong>CUBA</strong></p>
-                </div>
                 <nav class="nav-primary">
                     <a href="<?php echo esc_url( get_permalink( get_page_by_path( "order-tracking" ) ) ) ?>" class="btn font-medium">
                         <span class="icon-box"></span>

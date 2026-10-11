@@ -305,7 +305,7 @@ get_header();
                         <span class="boton-text">Todas las tiendas</span>
                     </a>
                 </div>
-                <img src="<?php echo esc_url( get_parent_theme_file_uri( '/assets/img/Banner tiendas.webp' ) ); ?>" alt="Paqueteria con SD Express, Chico con abrigo amarillo con paqueteria de SD Express">
+                <img src="<?php echo esc_url( get_parent_theme_file_uri( '/assets/img/Banner tiendas-islabeya.webp' ) ); ?>" alt="Paqueteria con SD Express, Chico con abrigo amarillo con paqueteria de SD Express">
             </div>
         </div>
     </section>

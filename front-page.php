@@ -27,7 +27,7 @@ get_header();
             <a href="<?php echo esc_url( get_term_link( 'torvan', 'product_brand' ) ); ?>" class="slider">
                 <img src="<?php echo esc_url( get_parent_theme_file_uri( '/assets/img/carrusel-hero/Banner 5.webp' ) ); ?>" alt="Motos Torvan, marca exclusiva en Islabeya">
             </a>
-            <a href="https://wa.link/q8fpmb" class="slider">
+            <a href="https://wa.link/q8fpmb" class="slider oculto">
                 <img src="<?php echo esc_url( get_parent_theme_file_uri( '/assets/img/carrusel-hero/Banner 6.webp' ) ); ?>" alt="Envio de paqueteria mediante SD Express">
             </a>
             <a href="<?php echo esc_url( get_term_link( 'despensa', 'product_cat' ) ); ?>" class="slider">
@@ -59,7 +59,7 @@ get_header();
         <a href="<?php echo esc_url( get_term_link( 'torvan', 'product_brand' ) ); ?>" class="slider-movil">
             <img <?php echo islabeya_banner_movil_srcset('carrusel-hero/Banner movil/BaNNer movil 5.webp'); ?> alt="Motos Torvan, marca exlcusiva en Islabeya">
         </a>
-        <a href="https://wa.link/q8fpmb" class="slider-movil">
+        <a href="https://wa.link/q8fpmb" class="slider-movil oculto">
             <img <?php echo islabeya_banner_movil_srcset('carrusel-hero/Banner movil/BaNNer movil 6.webp'); ?> alt="Envios seguros con SD Express">
         </a>
         <a href="<?php echo esc_url( get_term_link( 'despensa', 'product_cat' ) ); ?>" class="slider-movil">
@@ -277,7 +277,7 @@ get_header();
                 </div>
                 <div class="envio">
                     <div class="contenido">
-                        <span class="sdexpres"></span>
+                        <span class="islabeya"></span>
                         <div class="text">
                             <h3>Entregas ultra rápidas</h3>
                             <p>Tendrás tus productos en tu hogar con la mayor velocidad del mercado</p>
@@ -399,10 +399,6 @@ get_header();
             Marcas Colaboradoras
         </h2>
         <div class="marcas">
-            <a href="https://wa.link/q8fpmb" style="text-decoration: none;">
-                <img width="140" height="75" src="<?php echo esc_url( get_parent_theme_file_uri( '/assets/img/sdexpress.svg' ) ); ?>"
-                    alt="sdexpress">
-            </a>
             <?php
             // Buscar vendedor por nombre de tienda
             $store_name = 'Nuevos Tiempos';

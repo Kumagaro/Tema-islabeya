@@ -861,7 +861,7 @@ Features 2
     background-image: linear-gradient(180deg, #00000000 0%, #000000 100%) !important;
     border-radius: 0 0 var(--border-contenedores) var(--border-contenedores);
 }
-.sako, .torvan-icon , .sdexpres {
+.sako, .torvan-icon , .islabeya {
     background-color: white;
     border-radius: 10px;
     background-position: center;
@@ -876,8 +876,8 @@ Features 2
 .torvan-icon {
     background-image: url(../img/Torvan.svg);
 }
-.sdexpres {
-    background-image: url(../img/sdexpress.svg);
+.islabeya {
+    background-image: url(../img/IDENTIFICADOR-VISUAL.svg);
     background-size: 70px;
 }
 .disfruta-bottom .contenido .text {

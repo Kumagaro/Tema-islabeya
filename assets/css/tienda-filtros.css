@@ -448,12 +448,12 @@
         padding: 40px 0 0 0;
     }
     .producto-moto { 
-        width: 48.7%; 
+        width: 48%; 
     }
 }
 @media(max-width: 500px) { 
     .producto-moto { 
-        width: 48.7%; 
+        width: 48%; 
     }
 }
 

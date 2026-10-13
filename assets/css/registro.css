@@ -17,7 +17,7 @@
 .islabeya-account-container,
 .islabeya-registro-container {
     background-color: white;
-    height: 100vh;
+    min-height: 100vh;
     width: max(40%, 600px);
     padding: 20px;
     border-radius: 0 20px 20px 0;
@@ -54,6 +54,14 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+}
+
+.store-url-row {
+    margin-top: 10px;
+}
+
+.store-url-row .store-url-control {
+    margin-top: -23px;
 }
 
 .islabeya-registro-container .woocommerce-form-register, 

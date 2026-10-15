@@ -220,9 +220,6 @@
     font-size: 0.92rem;
     font-weight: 600;
     color: var(--color--text, #000);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; 
 }
 
 /* ---------- Direcciones ---------- */

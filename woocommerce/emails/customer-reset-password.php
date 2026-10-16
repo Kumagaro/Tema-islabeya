@@ -1,14 +1,6 @@
 <?php
 /**
- * Customer Reset Password Email
- *
- * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-reset-password.php.
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
+ * Customer Reset Password Email — IslaBeya
  *
  * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce/Templates/Emails
@@ -19,265 +11,142 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// Colores de marca IslaBeya
-$color_primary = '#15ad3c';
-$color_tertiary = '#004D35';
-$color_secondary = '#f5f5f5';
-$color_text = '#000';
-$color_text_secondary = '#6b7280';
+// Paleta local (para estilos inline)
+$color_primary   = '#15AD3C';
+$color_button    = '#0E7A2B';
+$color_card      = '#F3F8F4';
+$color_border    = '#DCE8DF';
+$color_text      = '#1F2A22';
+$color_text_soft = '#3E4A42';
+$color_muted     = '#56635A';
 
-// Información de contacto
-$whatsapp_url = 'https://web.whatsapp.com/send?phone=34602483604&text=Hola%20quiero%20hablar%20con%20ustedes';
-$phone_number = '+34 602 483 604';
-
-// Establecer el título del correo
+// Heading
 $email_heading = 'Restablecer contraseña';
-$email_description = 'Recibiste esta solicitud porque se inició un restablecimiento de contraseña para tu cuenta.';
+
+// URL de restablecimiento
+$reset_url = add_query_arg(
+    array(
+        'key'   => $reset_key,
+        'login' => rawurlencode( $user_login ),
+    ),
+    wc_get_endpoint_url( 'lost-password', '', wc_get_page_permalink( 'myaccount' ) )
+);
+
+// Fecha actual
+$date = date_i18n( 'j \d\e F \d\e Y' );
 
 /*
- * @hooked WC_Emails::email_header() Output the email header
+ * HEADER
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action( 'woocommerce_email_header', $email_heading, $email );
+?>
 
-<p><?php esc_html_e( 'Hola,', 'woocommerce' ); ?></p>
-<p><?php esc_html_e( 'Recibiste una solicitud para restablecer la contraseña de tu cuenta en IslaBeya. Si no solicitaste esto, puedes ignorar este correo.', 'woocommerce' ); ?></p>
+    <!-- =========================================================
+         HERO — 2 columnas
+    ========================================================= -->
+    <tr>
+      <td class="px py-hero" style="padding:72px 80px;text-align:left;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
 
-<!-- =========================================================
-     PASSWORD RESET CARD
-========================================================= -->
+          <!-- Columna izquierda: instrucciones + botón -->
+          <td class="col" width="56%" valign="middle" style="width:56%;vertical-align:middle;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td class="col-left-pad" style="padding-right:60px;font-family:Arial,Helvetica,sans-serif;color:<?php echo esc_attr( $color_text ); ?>;">
 
-<div class="order-card-wrapper">
+                  <p style="margin:0 0 12px 0;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:<?php echo esc_attr( $color_primary ); ?>;font-family:Arial,Helvetica,sans-serif;">
+                    Seguridad de la cuenta
+                  </p>
 
-<div class="order-card">
+                  <h1 class="h1" style="margin:0 0 24px 0;font-size:48px;line-height:1.15;font-weight:600;color:<?php echo esc_attr( $color_text ); ?>;font-family:Arial,Helvetica,sans-serif;">
+                    Restablece<br>
+                    <span style="color:<?php echo esc_attr( $color_primary ); ?>;">tu contraseña</span>
+                  </h1>
 
-    <div class="greeting">
-        Restablecer
-        <span class="first-name">
-            Contraseña
-        </span>
-    </div>
+                  <p class="txt" style="margin:0 0 16px 0;font-size:18px;line-height:1.6;color:<?php echo esc_attr( $color_text_soft ); ?>;font-family:Arial,Helvetica,sans-serif;">
+                    Hola,
+                  </p>
 
-    <div class="order-meta">
-        <div class="meta-row">
-            <span class="meta-cell meta-label">
-                Usuario:
-            </span>
-            <span class="meta-cell meta-value">
-                <?php echo esc_html( $user_login ); ?>
-            </span>
-        </div>
+                  <p class="txt" style="margin:0 0 16px 0;font-size:18px;line-height:1.6;color:<?php echo esc_attr( $color_text_soft ); ?>;font-family:Arial,Helvetica,sans-serif;">
+                    Recibiste una solicitud para restablecer la contraseña de tu cuenta en IslaBeya. Si no solicitaste esto, puedes ignorar este correo.
+                  </p>
 
-        <div class="meta-row">
-            <span class="meta-cell meta-label">
-                Fecha:
-            </span>
-            <span class="meta-cell meta-value">
-                <?php echo esc_html( date_i18n( 'j \d\e F \d\e Y' ) ); ?>
-            </span>
-        </div>
-    </div>
+                  <p class="txt" style="margin:0 0 32px 0;font-size:18px;line-height:1.6;color:<?php echo esc_attr( $color_text_soft ); ?>;font-family:Arial,Helvetica,sans-serif;">
+                    Para restablecer tu contraseña, haz clic en el siguiente botón. Este enlace expirará en <strong style="color:<?php echo esc_attr( $color_text ); ?>;">24 horas</strong>.
+                  </p>
 
-</div>
+                  <!-- Botón -->
+                  <table role="presentation" class="btn-full" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td align="center" bgcolor="<?php echo esc_attr( $color_button ); ?>" style="border-radius:12px;">
+                        <!--[if mso]>
+                        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="<?php echo esc_url( $reset_url ); ?>" style="height:60px;v-text-anchor:middle;width:300px;" arcsize="20%" stroke="f" fillcolor="<?php echo esc_attr( $color_button ); ?>">
+                          <w:anchorlock/><center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:18px;font-weight:bold;">Restablecer contraseña</center>
+                        </v:roundrect>
+                        <![endif]-->
+                        <!--[if !mso]><!-->
+                        <a href="<?php echo esc_url( $reset_url ); ?>" target="_blank" style="display:inline-block;padding:19px 48px;font-family:Arial,Helvetica,sans-serif;font-size:18px;font-weight:600;line-height:22px;color:#FFFFFF;text-decoration:none;border-radius:12px;background-color:<?php echo esc_attr( $color_button ); ?>;">Restablecer contraseña</a>
+                        <!--<![endif]-->
+                      </td>
+                    </tr>
+                  </table>
 
-<!-- =========================================================
-     INSTRUCTIONS
-========================================================= -->
+                  <!-- Fallback: enlace copiable -->
+                  <p style="margin:24px 0 0 0;font-size:13px;line-height:1.6;color:<?php echo esc_attr( $color_muted ); ?>;font-family:Arial,Helvetica,sans-serif;">
+                    ¿El botón no funciona? Copia y pega este enlace en tu navegador:<br>
+                    <a href="<?php echo esc_url( $reset_url ); ?>" target="_blank" style="color:<?php echo esc_attr( $color_button ); ?>;word-break:break-all;"><?php echo esc_html( $reset_url ); ?></a>
+                  </p>
 
-<div class="details-section">
+                </td>
+              </tr>
+            </table>
+          </td>
 
-    <p class="instructions">
-        <?php esc_html_e( 'Para restablecer tu contraseña, haz clic en el siguiente enlace. Este enlace expirará en 24 horas.', 'woocommerce' ); ?>
-    </p>
+          <!-- Columna derecha: tarjeta detalles + aviso seguridad -->
+          <td class="col stack-mt" width="44%" valign="middle" style="width:44%;vertical-align:middle;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
 
-</div>
+              <!-- Tarjeta de detalles -->
+              <tr>
+                <td class="card-pad" style="background-color:<?php echo esc_attr( $color_card ); ?>;border-radius:16px;padding:32px 36px;font-family:Arial,Helvetica,sans-serif;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
 
-<!-- =========================================================
-     BUTTON
-======================================================== -->
+                    <tr>
+                      <td colspan="2" style="padding:0 0 16px 0;font-size:20px;font-weight:600;color:<?php echo esc_attr( $color_text ); ?>;border-bottom:1px solid <?php echo esc_attr( $color_border ); ?>;font-family:Arial,Helvetica,sans-serif;">Detalles de la solicitud</td>
+                    </tr>
 
-<div class="button-wrapper">
-    <a href="<?php echo esc_url( add_query_arg( array( 'key' => $reset_key, 'login' => $user_login ), wc_get_endpoint_url( 'lost-password', '', wc_get_page_permalink( 'myaccount' ) ) ) ); ?>" class="track-button">
-        Restablecer contraseña
-    </a>
-</div>
+                    <tr class="det-row">
+                      <td class="det-label" style="padding:20px 0;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:<?php echo esc_attr( $color_muted ); ?>;border-bottom:1px solid <?php echo esc_attr( $color_border ); ?>;font-family:Arial,Helvetica,sans-serif;">Usuario</td>
+                      <td class="det-value" align="right" style="padding:20px 0;font-size:17px;font-weight:600;color:<?php echo esc_attr( $color_text ); ?>;border-bottom:1px solid <?php echo esc_attr( $color_border ); ?>;word-break:break-word;font-family:Arial,Helvetica,sans-serif;"><?php echo esc_html( $user_login ); ?></td>
+                    </tr>
 
-<!-- =========================================================
-     SECURITY NOTICE
-======================================================== -->
+                    <tr class="det-row">
+                      <td class="det-label" style="padding:20px 0 4px 0;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:<?php echo esc_attr( $color_muted ); ?>;font-family:Arial,Helvetica,sans-serif;">Fecha</td>
+                      <td class="det-value det-last" align="right" style="padding:20px 0 4px 0;font-size:17px;font-weight:600;color:<?php echo esc_attr( $color_text ); ?>;font-family:Arial,Helvetica,sans-serif;"><?php echo esc_html( $date ); ?></td>
+                    </tr>
 
-<div class="security-section">
+                  </table>
+                </td>
+              </tr>
 
-    <p class="security-notice">
-        <?php esc_html_e( 'Si no solicitaste este cambio, por favor ignora este correo. Tu contraseña permanecerá sin cambios.', 'woocommerce' ); ?>
-    </p>
+              <!-- Aviso de seguridad -->
+              <tr>
+                <td style="padding:24px 8px 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;font-style:italic;color:<?php echo esc_attr( $color_muted ); ?>;">
+                  Si no solicitaste este cambio, ignora este correo. Tu contraseña permanecerá sin cambios.
+                </td>
+              </tr>
 
-</div>
+            </table>
+          </td>
 
-<style>
-
-    /* =========================================================
-       ORDER CARD
-    ========================================================= */
-
-    .order-card-wrapper {
-        position: relative;
-        z-index: 5;
-        padding: 0 40px;
-        margin-top: -35px;
-    }
-
-    .order-card {
-        background-color: #ffffff;
-        border-radius: 20px;
-        padding: 34px 35px 36px 35px;
-    }
-
-    .greeting {
-        margin: 0;
-        text-align: center;
-        font-size: 25px;
-        line-height: 32px;
-        font-weight: 700;
-    }
-
-    .first-name {
-        color: <?php echo $color_primary; ?>;
-        font-family: Georgia, "Times New Roman", serif;
-        font-style: italic;
-    }
-
-    .order-meta {
-        width: 100%;
-        background-color: #f7f7f7;
-        border-radius: 9px;
-    }
-
-    .meta-row {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .meta-row + .meta-row {
-        border-top: 1px solid #dddddd;
-    }
-
-    .meta-cell {
-        padding: 12px 10px;
-        font-size: 13px;
-        line-height: 19px;
-    }
-
-    .meta-label {
-        width: 48%;
-        font-weight: 700;
-        text-align: left;
-    }
-
-    .meta-value {
-        width: 52%;
-        text-align: right;
-        color: #333333;
-    }
-
-    /* =========================================================
-       DETAILS SECTION
-    ========================================================= */
-
-    .details-section {
-        padding: 42px 40px 0 40px;
-    }
-
-    .instructions {
-        font-size: 13px;
-        line-height: 19px;
-        color: #555555;
-        text-align: center;
-    }
-
-    /* =========================================================
-       BUTTON
-    ========================================================= */
-
-    .button-wrapper {
-        padding: 42px 0 48px 0;
-        text-align: center;
-    }
-
-    .track-button {
-        display: inline-block;
-        padding: 14px 40px;
-        background-color: <?php echo $color_primary; ?>;
-        border-radius: 8px;
-        color: #ffffff !important;
-        font-size: 16px;
-        line-height: 21px;
-        font-weight: 700;
-    }
-
-    /* =========================================================
-       SECURITY SECTION
-    ========================================================= */
-
-    .security-section {
-        padding: 20px 40px 0 40px;
-    }
-
-    .security-notice {
-        font-size: 11px;
-        line-height: 16px;
-        color: #777777;
-        text-align: center;
-        font-style: italic;
-    }
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
-
-    @media only screen and (max-width: 520px) {
-
-        .order-card-wrapper {
-            padding-left: 24px;
-            padding-right: 24px;
-        }
-
-        .order-card {
-            padding-left: 25px;
-            padding-right: 25px;
-        }
-
-        .details-section,
-        .security-section {
-            padding-left: 24px;
-            padding-right: 24px;
-        }
-
-    }
-
-    @media only screen and (max-width: 380px) {
-
-        .order-card {
-            padding-left: 19px;
-            padding-right: 19px;
-        }
-
-        .greeting {
-            font-size: 23px;
-        }
-
-        .details-section,
-        .security-section {
-            padding-left: 19px;
-            padding-right: 19px;
-        }
-
-    }
-
-</style>
+        </tr>
+        </table>
+      </td>
+    </tr>
 
 <?php
 /*
- * @hooked WC_Emails::email_footer() Output the email footer
+ * FOOTER
  */
 do_action( 'woocommerce_email_footer', $email );

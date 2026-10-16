@@ -1,14 +1,6 @@
 <?php
 /**
- * Customer Failed Order Email
- *
- * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-failed-order.php.
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
+ * Customer Failed Order Email — IslaBeya
  *
  * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce/Templates/Emails
@@ -19,439 +11,184 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-// Colores de marca IslaBeya
-$color_primary = '#15ad3c';
-$color_tertiary = '#004D35';
-$color_secondary = '#f5f5f5';
-$color_text = '#000';
-$color_text_secondary = '#6b7280';
-$color_error = '#e74c3c';
+// Paleta local (para estilos inline)
+$color_primary         = '#15AD3C';
+$color_button          = '#0E7A2B';
+$color_card            = '#F3F8F4';
+$color_border          = '#DCE8DF';
+$color_text            = '#1F2A22';
+$color_text_soft       = '#3E4A42';
+$color_muted           = '#56635A';
+$color_pill_off        = '#F3F4F6';
+$color_pill_off_txt    = '#9CA3AF';
+$color_error           = '#DC2626';
+$color_error_bg        = '#FEE2E2';
+$color_warn            = '#92400E';
+$color_warn_bg         = '#FEF3C7';
 
-// Información de contacto
-$whatsapp_url = 'https://web.whatsapp.com/send?phone=34602483604&text=Hola%20quiero%20hablar%20con%20ustedes';
-$phone_number = '+34 602 483 604';
+// Datos del pedido
+$order_number = $order->get_order_number();
+$order_id     = $order->get_id();
+$first_name   = $order->get_billing_first_name();
+$date         = $order->get_date_created() ? $order->get_date_created()->date_i18n( 'j \d\e F \d\e Y' ) : '';
+$total_html   = $order->get_formatted_order_total();
+$payment      = $order->get_payment_method_title();
+$status       = wc_get_order_status_name( $order->get_status() );
+$retry_url    = $order->get_checkout_payment_url();
+
+// WhatsApp con mensaje general
+$whatsapp_url = 'https://web.whatsapp.com/send?phone=34602483604&text=' . rawurlencode( 'Hola quiero hablar con ustedes' );
 
 /*
- * @hooked WC_Emails::email_header() Output the email header
+ * HEADER
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action( 'woocommerce_email_header', $email_heading, $email );
+?>
 
-<?php /* translators: %s: Customer first name */ ?> 
+    <!-- =========================================================
+         HERO — 2 columnas
+    ========================================================= -->
+    <tr>
+      <td class="px py-hero" style="padding:72px 80px;text-align:left;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
 
-<!-- =========================================================
-     ORDER CARD
-========================================================= -->
+          <!-- Columna izquierda -->
+          <td class="col" width="56%" valign="middle" style="width:56%;vertical-align:middle;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td class="col-left-pad" style="padding-right:60px;font-family:Arial,Helvetica,sans-serif;color:<?php echo esc_attr( $color_text ); ?>;">
 
-<div class="order-card-wrapper">
+                  <p style="margin:0 0 12px 0;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:<?php echo esc_attr( $color_warn ); ?>;font-family:Arial,Helvetica,sans-serif;">
+                    Pedido #<?php echo esc_html( $order_number ); ?>
+                  </p>
 
-<div class="order-card">
+                  <h1 class="h1" style="margin:0 0 24px 0;font-size:48px;line-height:1.15;font-weight:600;color:<?php echo esc_attr( $color_text ); ?>;font-family:Arial,Helvetica,sans-serif;">
+                    Hola,<br>
+                    <span style="color:<?php echo esc_attr( $color_warn ); ?>;"><?php echo esc_html( $first_name ); ?></span>
+                  </h1>
 
-    <div class="greeting">
-        Hola
-        <span class="first-name">
-            <?php echo esc_html( $order->get_billing_first_name() ); ?>
-        </span>,
-    </div>
+                  <p class="txt" style="margin:0 0 32px 0;font-size:18px;line-height:1.6;color:<?php echo esc_attr( $color_text_soft ); ?>;font-family:Arial,Helvetica,sans-serif;">
+                    Hubo un problema al procesar tu pedido. Puedes reintentar el pago o contactarnos por WhatsApp si necesitas asistencia.
+                  </p>
 
-    <p><?php esc_html_e( 'Hubo un problema al procesar tu pedido. Por favor intenta nuevamente o contáctanos para asistencia.', 'woocommerce' ); ?></p>
+                  <!-- Botón principal: Reintentar pago -->
+                  <table role="presentation" class="btn-full" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
+                    <tr>
+                      <td align="center" bgcolor="<?php echo esc_attr( $color_button ); ?>" style="border-radius:12px;">
+                        <!--[if mso]>
+                        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="<?php echo esc_url( $retry_url ); ?>" style="height:60px;v-text-anchor:middle;width:300px;" arcsize="20%" stroke="f" fillcolor="<?php echo esc_attr( $color_button ); ?>">
+                          <w:anchorlock/><center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:18px;font-weight:bold;">Reintentar pago</center>
+                        </v:roundrect>
+                        <![endif]-->
+                        <!--[if !mso]><!-->
+                        <a href="<?php echo esc_url( $retry_url ); ?>" target="_blank" style="display:inline-block;padding:19px 48px;font-family:Arial,Helvetica,sans-serif;font-size:18px;font-weight:600;line-height:22px;color:#FFFFFF;text-decoration:none;border-radius:12px;background-color:<?php echo esc_attr( $color_button ); ?>;">Reintentar pago</a>
+                        <!--<![endif]-->
+                      </td>
+                    </tr>
+                  </table>
 
+                  <!-- Botón secundario: WhatsApp -->
+                  <table role="presentation" class="btn-full" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td align="center" bgcolor="<?php echo esc_attr( $color_error ); ?>" style="border-radius:12px;">
+                        <!--[if mso]>
+                        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="<?php echo esc_url( $whatsapp_url ); ?>" style="height:60px;v-text-anchor:middle;width:300px;" arcsize="20%" stroke="f" fillcolor="<?php echo esc_attr( $color_error ); ?>">
+                          <w:anchorlock/><center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:18px;font-weight:bold;">Contactar por WhatsApp</center>
+                        </v:roundrect>
+                        <![endif]-->
+                        <!--[if !mso]><!-->
+                        <a href="<?php echo esc_url( $whatsapp_url ); ?>" target="_blank" style="display:inline-block;padding:19px 48px;font-family:Arial,Helvetica,sans-serif;font-size:18px;font-weight:600;line-height:22px;color:#FFFFFF;text-decoration:none;border-radius:12px;background-color:<?php echo esc_attr( $color_error ); ?>;">Contactar por WhatsApp</a>
+                        <!--<![endif]-->
+                      </td>
+                    </tr>
+                  </table>
 
-    <div class="order-meta">
-        <div class="meta-row">
-            <span class="meta-cell meta-label">
-                ID del pedido:
-            </span>
-            <span class="meta-cell meta-value">
-                <?php echo esc_html( $order->get_order_number() ); ?>
-            </span>
-        </div>
+                </td>
+              </tr>
+            </table>
+          </td>
 
-        <div class="meta-row">
-            <span class="meta-cell meta-label">
-                Fecha:
-            </span>
-            <span class="meta-cell meta-value">
-                <?php echo esc_html( $order->get_date_created()->date_i18n( 'j \d\e F \d\e Y' ) ); ?>
-            </span>
-        </div>
-    </div>
+          <!-- Columna derecha: tarjeta de detalles -->
+          <td class="col stack-mt" width="44%" valign="middle" style="width:44%;vertical-align:middle;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td class="card-pad" style="background-color:<?php echo esc_attr( $color_card ); ?>;border-radius:16px;padding:32px 36px;font-family:Arial,Helvetica,sans-serif;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
 
-</div>
+                    <tr>
+                      <td colspan="2" style="padding:0 0 16px 0;font-size:20px;font-weight:600;color:<?php echo esc_attr( $color_text ); ?>;border-bottom:1px solid <?php echo esc_attr( $color_border ); ?>;font-family:Arial,Helvetica,sans-serif;">Detalles del pedido</td>
+                    </tr>
 
-<!-- =========================================================
-     STATUS
-========================================================= -->
+                    <tr class="det-row">
+                      <td class="det-label" style="padding:20px 0;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:<?php echo esc_attr( $color_muted ); ?>;border-bottom:1px solid <?php echo esc_attr( $color_border ); ?>;font-family:Arial,Helvetica,sans-serif;">Fecha</td>
+                      <td class="det-value" align="right" style="padding:20px 0;font-size:17px;font-weight:600;color:<?php echo esc_attr( $color_text ); ?>;border-bottom:1px solid <?php echo esc_attr( $color_border ); ?>;font-family:Arial,Helvetica,sans-serif;"><?php echo esc_html( $date ); ?></td>
+                    </tr>
 
-<div class="status-section">
+                    <tr class="det-row">
+                      <td class="det-label" style="padding:20px 0;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:<?php echo esc_attr( $color_muted ); ?>;border-bottom:1px solid <?php echo esc_attr( $color_border ); ?>;font-family:Arial,Helvetica,sans-serif;">Precio final</td>
+                      <td class="det-value" align="right" style="padding:20px 0;font-size:17px;font-weight:600;color:<?php echo esc_attr( $color_text ); ?>;border-bottom:1px solid <?php echo esc_attr( $color_border ); ?>;font-family:Arial,Helvetica,sans-serif;"><?php echo wp_kses_post( $total_html ); ?></td>
+                    </tr>
 
-    <div class="status-timeline">
+                    <tr class="det-row">
+                      <td class="det-label" style="padding:20px 0;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:<?php echo esc_attr( $color_muted ); ?>;border-bottom:1px solid <?php echo esc_attr( $color_border ); ?>;font-family:Arial,Helvetica,sans-serif;">Método de pago</td>
+                      <td class="det-value" align="right" style="padding:20px 0;font-size:17px;font-weight:600;color:<?php echo esc_attr( $color_text ); ?>;border-bottom:1px solid <?php echo esc_attr( $color_border ); ?>;font-family:Arial,Helvetica,sans-serif;"><?php echo esc_html( $payment ); ?></td>
+                    </tr>
 
-        <div class="timeline-line"></div>
+                    <tr class="det-row">
+                      <td class="det-label" style="padding:20px 0 4px 0;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:<?php echo esc_attr( $color_muted ); ?>;font-family:Arial,Helvetica,sans-serif;">Estado</td>
+                      <td class="det-value det-last" align="right" style="padding:20px 0 4px 0;font-family:Arial,Helvetica,sans-serif;">
+                        <span style="display:inline-block;padding:6px 14px;border-radius:999px;background-color:<?php echo esc_attr( $color_warn_bg ); ?>;color:<?php echo esc_attr( $color_warn ); ?>;font-size:13px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;"><?php echo esc_html( $status ); ?></span>
+                      </td>
+                    </tr>
 
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-icon active">
-                    ✓
-                </div>
-                <div class="timeline-label active">
-                    Recibido
-                </div>
-            </div>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
 
-            <div class="timeline-item">
-                <div class="timeline-icon failed">
-                    !
-                </div>
-                <div class="timeline-label failed">
-                    Fallido
-                </div>
-            </div>
+        </tr>
+        </table>
+      </td>
+    </tr>
 
-            <div class="timeline-item">
-                <div class="timeline-icon inactive">
-                    •
-                </div>
-                <div class="timeline-label inactive">
-                    Enviado
-                </div>
-            </div>
-        </div>
+    <!-- =========================================================
+         TIMELINE — 3 pasos, "Fallido" en rojo
+    ========================================================= -->
+    <tr>
+      <td class="px" style="padding:0 80px 72px 80px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="padding-bottom:16px;font-family:Arial,Helvetica,sans-serif;font-size:22px;font-weight:600;color:<?php echo esc_attr( $color_text ); ?>;">Estado del pedido</td>
+          </tr>
+          <tr>
+            <td class="card-pad" style="background-color:<?php echo esc_attr( $color_card ); ?>;border-radius:16px;padding:24px 32px;text-align:center;">
 
-    </div>
+              <div style="font-size:0;text-align:center;">
 
-</div>
-
-<!-- =========================================================
-     ORDER DETAILS
-========================================================= -->
-
-<div class="details-section">
-
-    <div class="details-list">
-        <div class="detail-row">
-            <span class="detail-cell detail-label">
-                Precio final:
-            </span>
-            <span class="detail-cell detail-value">
-                <?php echo $order->get_formatted_order_total(); ?>
-            </span>
-        </div>
-
-        <div class="detail-row">
-            <span class="detail-cell detail-label">
-                Método de pago:
-            </span>
-            <span class="detail-cell detail-value">
-                <?php echo esc_html( $order->get_payment_method_title() ); ?>
-            </span>
-        </div>
-
-        <div class="detail-row">
-            <span class="detail-cell detail-label">
-                Estado:
-            </span>
-            <span class="detail-cell detail-value">
-                <span class="status-badge status-badge-failed">
-                    <?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?>
+                <span style="display:inline-block;padding:10px 20px;margin:4px;border-radius:999px;background-color:#D9F0E1;color:<?php echo esc_attr( $color_button ); ?>;font-size:14px;font-weight:600;letter-spacing:0.02em;font-family:Arial,Helvetica,sans-serif;">
+                  ✓ Recibido
                 </span>
-            </span>
-        </div>
-    </div>
 
-</div>
+                <span style="display:inline-block;padding:10px 20px;margin:4px;border-radius:999px;background-color:<?php echo esc_attr( $color_error_bg ); ?>;color:<?php echo esc_attr( $color_error ); ?>;font-size:14px;font-weight:600;letter-spacing:0.02em;font-family:Arial,Helvetica,sans-serif;">
+                  ✕ Fallido
+                </span>
 
-<!-- =========================================================
-     BUTTON
-========================================================= -->
+                <span style="display:inline-block;padding:10px 20px;margin:4px;border-radius:999px;background-color:<?php echo esc_attr( $color_pill_off ); ?>;color:<?php echo esc_attr( $color_pill_off_txt ); ?>;font-size:14px;font-weight:600;letter-spacing:0.02em;font-family:Arial,Helvetica,sans-serif;">
+                  • Enviado
+                </span>
 
-<div class="button-wrapper">
-    <a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="track-button">
-        Reintentar pago
-    </a>
-    <br><br>
-    <a href="<?php echo esc_url( $whatsapp_url ); ?>" class="track-button-secondary">
-        Contactar por WhatsApp
-    </a>
-</div>
+              </div>
 
-<style>
-
-    /* =========================================================
-       ORDER CARD
-    ========================================================= */
-
-    .order-card-wrapper {
-        position: relative;
-        z-index: 5;
-        padding: 0 40px;
-        margin-top: -35px;
-    }
-
-    .order-card {
-        background-color: #ffffff;
-        border-radius: 20px;
-        padding: 34px 35px 36px 35px;
-    }
-
-    .greeting {
-        margin: 0;
-        text-align: center;
-        font-size: 25px;
-        line-height: 32px;
-        font-weight: 700;
-    }
-
-    .first-name {
-        color: <?php echo $color_primary; ?>;
-        font-family: Georgia, "Times New Roman", serif;
-        font-style: italic;
-    }
-
-    .order-meta {
-        width: 100%;
-        background-color: #f7f7f7;
-        border-radius: 9px;
-    }
-
-    .meta-row {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .meta-row + .meta-row {
-        border-top: 1px solid #dddddd;
-    }
-
-    .meta-cell {
-        padding: 12px 10px;
-        font-size: 13px;
-        line-height: 19px;
-    }
-
-    .meta-label {
-        width: 48%;
-        font-weight: 700;
-        text-align: left;
-    }
-
-    .meta-value {
-        width: 52%;
-        text-align: right;
-        color: #333333;
-    }
-
-    /* =========================================================
-       STATUS
-    ========================================================= */
-
-    .status-section {
-        padding: 45px 40px 0 40px;
-    }
-
-    .status-timeline {
-        position: relative;
-        width: 100%;
-    }
-
-    .timeline-line {
-        position: absolute;
-        z-index: 0;
-        top: 15px;
-        left: 34px;
-        right: 34px;
-        height: 1px;
-        background-color: #cccccc;
-    }
-
-    .timeline {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .timeline-item {
-        width: 33.333%;
-        text-align: center;
-    }
-
-    .timeline-icon {
-        width: 31px;
-        height: 31px;
-        margin: 0 auto 9px auto;
-        border-radius: 50%;
-        box-sizing: border-box;
-        text-align: center;
-        font-size: 14px;
-        line-height: 31px;
-        font-weight: 700;
-    }
-
-    .timeline-icon.active {
-        background-color: <?php echo $color_primary; ?>;
-        color: #ffffff;
-    }
-
-    .timeline-icon.inactive {
-        background-color: #f1f1f1;
-        border: 1px solid #dddddd;
-        color: #cfcfcf;
-    }
-
-    .timeline-icon.failed {
-        background-color: <?php echo $color_error; ?>;
-        color: #ffffff;
-    }
-
-    .timeline-label {
-        font-size: 11px;
-        line-height: 16px;
-        font-weight: 700;
-    }
-
-    .timeline-label.active {
-        color: #111111;
-    }
-
-    .timeline-label.inactive {
-        color: #c6c6c6;
-    }
-
-    .timeline-label.failed {
-        color: <?php echo $color_error; ?>;
-    }
-
-    /* =========================================================
-       ORDER INFORMATION
-    ========================================================= */
-
-    .details-section {
-        padding: 42px 40px 0 40px;
-    }
-
-    .details-list {
-        width: 100%;
-    }
-
-    .detail-row {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .detail-cell {
-        padding: 5px 0;
-        font-size: 13px;
-        line-height: 19px;
-    }
-
-    .detail-label {
-        width: 48%;
-        text-align: left;
-        font-weight: 700;
-    }
-
-    .detail-value {
-        width: 52%;
-        text-align: right;
-    }
-
-    .status-badge {
-        display: inline-block;
-        padding: 4px 9px;
-        background-color: #a9f1d7;
-        color: #0a9d70;
-        border-radius: 5px;
-        font-size: 10px;
-        line-height: 13px;
-        font-weight: 700;
-    }
-
-    .status-badge-failed {
-        background-color: #fff3cd;
-        color: #856404;
-    }
-
-    /* =========================================================
-       BUTTON
-    ========================================================= */
-
-    .button-wrapper {
-        padding: 42px 0 48px 0;
-        text-align: center;
-    }
-
-    .track-button {
-        display: inline-block;
-        padding: 14px 40px;
-        background-color: <?php echo $color_primary; ?>;
-        border-radius: 8px;
-        color: #ffffff !important;
-        font-size: 16px;
-        line-height: 21px;
-        font-weight: 700;
-    }
-
-    .track-button-secondary {
-        display: inline-block;
-        padding: 14px 40px;
-        background-color: <?php echo $color_error; ?>;
-        border-radius: 8px;
-        color: #ffffff !important;
-        font-size: 16px;
-        line-height: 21px;
-        font-weight: 700;
-    }
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
-
-    @media only screen and (max-width: 520px) {
-
-        .order-card-wrapper {
-            padding-left: 24px;
-            padding-right: 24px;
-        }
-
-        .order-card {
-            padding-left: 25px;
-            padding-right: 25px;
-        }
-
-        .status-section,
-        .details-section {
-            padding-left: 24px;
-            padding-right: 24px;
-        }
-
-    }
-
-    @media only screen and (max-width: 380px) {
-
-        .order-card {
-            padding-left: 19px;
-            padding-right: 19px;
-        }
-
-        .greeting {
-            font-size: 23px;
-        }
-
-        .status-section,
-        .details-section {
-            padding-left: 19px;
-            padding-right: 19px;
-        }
-
-    }
-
-</style>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
 <?php
 /*
- * @hooked WC_Emails::email_footer() Output the email footer
+ * FOOTER
  */
 do_action( 'woocommerce_email_footer', $email );
